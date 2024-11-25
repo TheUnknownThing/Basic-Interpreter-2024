@@ -51,12 +51,20 @@ int main() {
  * or one of the BASIC commands, such as LIST or RUN.
  */
 
+
 void processLine(std::string line, Program &program, EvalState &state) {
     TokenScanner scanner;
     scanner.ignoreWhitespace();
-    scanner.scanNumbers();
+    scanner.scanNumbers(); // ignore the number at the beginning of the line
     scanner.setInput(line);
 
+    // Token type: WORD, NUMBER, OPERATOR, SEPARATOR, STRING, EOF
+
     //todo
+    while (scanner.hasMoreTokens()) {
+        std::string token = scanner.nextToken();
+        // ... process the token ...
+        TokenType type = scanner.getTokenType(token);
+    }
 }
 

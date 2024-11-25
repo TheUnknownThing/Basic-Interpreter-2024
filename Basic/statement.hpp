@@ -85,4 +85,61 @@ public:
  * specify its own destructor method to free that memory.
  */
 
+class RemStmt : public Statement {
+public:
+    RemStmt(TokenScanner &scanner);
+    void execute(EvalState &state, Program &program) override;
+};
+
+class LetStmt : public Statement {
+public:
+    LetStmt(TokenScanner &scanner);
+    ~LetStmt();
+    void execute(EvalState &state, Program &program) override;
+private:
+    Expression *exp;
+    std::string var;
+};
+
+class PrintStmt : public Statement {
+public:
+    PrintStmt(TokenScanner &scanner);
+    ~PrintStmt();
+    void execute(EvalState &state, Program &program) override;
+private:
+    Expression *exp;
+};
+
+class InputStmt : public Statement {
+public:
+    InputStmt(TokenScanner &scanner);
+    void execute(EvalState &state, Program &program) override;
+private:
+    std::string var;
+};
+
+class GotoStmt : public Statement {
+public:
+    GotoStmt(TokenScanner &scanner);
+    void execute(EvalState &state, Program &program) override;
+private:
+    int lineNumber;
+};
+
+class IfStmt : public Statement {
+public:
+    IfStmt(TokenScanner &scanner);
+    void execute(EvalState &state, Program &program) override;
+private:
+    Expression *exp1, *exp2;
+    std::string op;
+    int lineNumber;
+};
+
+class EndStmt : public Statement {
+public:
+    EndStmt();
+    void execute(EvalState &state, Program &program) override;
+};
+
 #endif

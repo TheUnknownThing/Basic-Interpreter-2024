@@ -9,56 +9,73 @@
  */
 
 #include "program.hpp"
-
-
+#include "Utils/error.hpp"
 
 Program::Program() = default;
 
 Program::~Program() = default;
 
 void Program::clear() {
-    // Replace this stub with your own code
-    //todo
+  sourceLines.clear();
+  parsedStatements.clear();
+  lineNumbers.clear();
 }
 
 void Program::addSourceLine(int lineNumber, const std::string &line) {
-    // Replace this stub with your own code
-    //todo
+  if (sourceLines.find(lineNumber) != sourceLines.end()) {
+    sourceLines.erase(lineNumber);
+  }
+  sourceLines[lineNumber] = line;
+  lineNumbers.insert(lineNumber);
 }
 
 void Program::removeSourceLine(int lineNumber) {
-    // Replace this stub with your own code
-    //todo
+  if (sourceLines.find(lineNumber) != sourceLines.end()) {
+    sourceLines.erase(lineNumber);
+    lineNumbers.erase(lineNumber);
+  }
 }
 
 std::string Program::getSourceLine(int lineNumber) {
-    // Replace this stub with your own code
-    //todo
+  try {
+    return sourceLines.at(lineNumber);
+  } catch (std::out_of_range &ex) {
+    return "";
+  }
 }
 
 void Program::setParsedStatement(int lineNumber, Statement *stmt) {
-    // Replace this stub with your own code
-    //todo
+  if (sourceLines.find(lineNumber) == sourceLines.end()) {
+    error("LINE NUMBER ERROR");
+  } else {
+    if (parsedStatements.find(lineNumber) != parsedStatements.end()) {
+      parsedStatements.erase(lineNumber);
+    }
+    parsedStatements[lineNumber] = stmt;
+  }
 }
 
-//void Program::removeSourceLine(int lineNumber) {
-
 Statement *Program::getParsedStatement(int lineNumber) {
-   // Replace this stub with your own code
-   //todo
+  try {
+    return parsedStatements.at(lineNumber);
+  } catch (std::out_of_range &ex) {
+    return nullptr;
+  }
 }
 
 int Program::getFirstLineNumber() {
-    // Replace this stub with your own code
-    //todo
+  if (lineNumbers.empty()) {
+    return -1;
+  } else {
+    return *lineNumbers.begin();
+  }
 }
 
 int Program::getNextLineNumber(int lineNumber) {
-    // Replace this stub with your own code
-    //todo
+  auto it = lineNumbers.upper_bound(lineNumber);
+  if (it == lineNumbers.end()) {
+    return -1;
+  } else {
+    return *it;
+  }
 }
-
-//more func to add
-//todo
-
-

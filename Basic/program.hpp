@@ -143,10 +143,12 @@ public:
     //more func to add
     //todo
 
-private:
+private:T
 
     // Fill this in with whatever types and instance variables you need
-    //todo
+    std::unordered_map<int, std::string> sourceLines;
+    std::unordered_map<int, Statement *> parsedStatements;
+    std::set <int> lineNumbers;
 };
 
 #endif
