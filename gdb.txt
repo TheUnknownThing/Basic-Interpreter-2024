@@ -1,0 +1,7 @@
+Starting program: /root/Code/Projects/Basic-Interpreter-2024/build/code 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 2005558) exited normally]
+Warning: 'set logging off', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled off'.
+

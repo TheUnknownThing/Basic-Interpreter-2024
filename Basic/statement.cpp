@@ -73,8 +73,13 @@ InputStmt::InputStmt(TokenScanner &scanner) {
 void InputStmt::execute(EvalState &state, Program &program) {
   std::string input;
   std::cout << " ? ";
-  std::cin >> input;
-  state.setValue(var, stringToInt(input));
+  std::getline(std::cin, input);
+  // state.setValue(var, stringToInt(input));
+  try {
+    state.setValue(var, stringToInt(input));
+  } catch (...) {
+    error("INVALID NUMBER");
+  }
 }
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
