@@ -66,7 +66,6 @@ void processLine(std::string line, Program &program, EvalState &state) {
     std::cout << "  CLEAR: Clear the program." << std::endl;
     std::cout << "  QUIT: Quit the interpreter." << std::endl;
   } else if (line == "LIST") {
-    int firstLine = program.getFirstLineNumber();
     program.listAllLines();
   } else if (line == "RUN") {
     int firstLine = program.getFirstLineNumber();
@@ -85,8 +84,6 @@ void processLine(std::string line, Program &program, EvalState &state) {
       }
     }
   } else {
-    // if the line begins with a number, add it to the program
-    // if the line not begin with a number, it is an expression
     TokenScanner scanner;
     scanner.ignoreWhitespace();
     scanner.scanNumbers();
@@ -97,41 +94,29 @@ void processLine(std::string line, Program &program, EvalState &state) {
       int lineNumber = stringToInteger(token);
       scanner.scanStrings();
       token = scanner.nextToken();
-      // parse the statement
+      Statement *stmt = nullptr;
       if (token == "REM") {
-        program.addSourceLine(lineNumber, line);
-        RemStmt *stmt = new RemStmt(scanner);
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new RemStmt(scanner);
       } else if (token == "LET") {
-        program.addSourceLine(lineNumber, line);
-        LetStmt *stmt = new LetStmt(scanner);
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new LetStmt(scanner);
       } else if (token == "PRINT") {
-        program.addSourceLine(lineNumber, line);
-        PrintStmt *stmt = new PrintStmt(scanner);
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new PrintStmt(scanner);
       } else if (token == "INPUT") {
-        program.addSourceLine(lineNumber, line);
-        InputStmt *stmt = new InputStmt(scanner);
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new InputStmt(scanner);
       } else if (token == "GOTO") {
-        program.addSourceLine(lineNumber, line);
-        GotoStmt *stmt = new GotoStmt(scanner);
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new GotoStmt(scanner);
       } else if (token == "IF") {
-        program.addSourceLine(lineNumber, line);
-        IfStmt *stmt = new IfStmt(scanner);
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new IfStmt(scanner);
       } else if (token == "END") {
-        program.addSourceLine(lineNumber, line);
-        EndStmt *stmt = new EndStmt();
-        program.setParsedStatement(lineNumber, stmt);
+        stmt = new EndStmt();
       } else {
         error("SYNTAX ERROR");
-        scanner.~TokenScanner();
+      }
+      if (stmt != nullptr) {
+        program.addSourceLine(lineNumber, line);
+        program.setParsedStatement(lineNumber, stmt);
       }
     } else if (scanner.getTokenType(token) == WORD) {
-      // directly execute LET, PRINT and INPUT statement
       if (token == "LET") {
         LetStmt *stmt = new LetStmt(scanner);
         stmt->execute(state, program);
