@@ -47,7 +47,7 @@ void LetStmt::execute(EvalState &state, Program &program) {
   state.setValue(var, exp->eval(state));
 }
 
-PrintStmt::PrintStmt(TokenScanner &scanner) {
+PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
   try {
     exp = parseExp(scanner);
   } catch (...) {
@@ -58,7 +58,11 @@ PrintStmt::PrintStmt(TokenScanner &scanner) {
   }
 }
 
-PrintStmt::~PrintStmt() { delete exp; }
+PrintStmt::~PrintStmt() {
+  if (exp != nullptr) {
+    delete exp;
+  }
+}
 
 void PrintStmt::execute(EvalState &state, Program &program) {
   std::cout << exp->eval(state) << std::endl;

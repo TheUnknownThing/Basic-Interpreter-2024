@@ -122,20 +122,21 @@ void processLine(std::string line, Program &program, EvalState &state) {
         program.setParsedStatement(lineNumber, stmt);
       }
     } else if (scanner.getTokenType(token) == WORD) {
+      Statement *stmt = nullptr;
       if (token == "LET") {
-        LetStmt *stmt = new LetStmt(scanner);
+        stmt = new LetStmt(scanner);
         stmt->execute(state, program);
-        delete stmt;
       } else if (token == "PRINT") {
-        PrintStmt *stmt = new PrintStmt(scanner);
+        stmt = new PrintStmt(scanner);
         stmt->execute(state, program);
-        delete stmt;
       } else if (token == "INPUT") {
-        InputStmt *stmt = new InputStmt(scanner);
+        stmt = new InputStmt(scanner);
         stmt->execute(state, program);
-        delete stmt;
       } else {
         std::cout << "SYNTAX ERROR" << std::endl;
+      }
+      if (stmt != nullptr) {
+        delete stmt;
       }
     } else {
       std::cout << "SYNTAX ERROR" << std::endl;
