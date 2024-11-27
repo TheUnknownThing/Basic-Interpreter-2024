@@ -10,6 +10,7 @@
 
 #include "program.hpp"
 #include "Utils/error.hpp"
+#include <algorithm>
 
 Program::Program() = default;
 
@@ -102,4 +103,8 @@ int Program::nextLine() {
     return -1;
   }
   return getNextLineNumber(currentLine);
+}
+
+bool Program::findLine(int lineNumber) {
+  return lineNumbers.find(lineNumber) != lineNumbers.end();
 }

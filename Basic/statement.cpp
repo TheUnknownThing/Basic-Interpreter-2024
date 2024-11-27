@@ -104,7 +104,11 @@ GotoStmt::GotoStmt(TokenScanner &scanner) {
 }
 
 void GotoStmt::execute(EvalState &state, Program &program) {
-  program.setCurrentLine(lineNumber);
+  if (program.findLine(lineNumber)) {
+    program.setCurrentLine(lineNumber);
+  } else {
+    error("LINE NUMBER ERROR");
+  }
 }
 
 IfStmt::IfStmt(TokenScanner &scanner) {
