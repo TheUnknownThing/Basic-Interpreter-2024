@@ -1201,16 +1201,7 @@ Trace file:
 RUN
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: THEN
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace82.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 IF 1 + 1 = 1 THEN 30
@@ -1219,16 +1210,7 @@ Trace file:
 RUN
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: THEN
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace83.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 IF 1 + 1 > 1 THEN 30
@@ -1237,16 +1219,7 @@ Trace file:
 RUN
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: >
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace84.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 IF 1 + 1 > 2 THEN 30
@@ -1255,16 +1228,7 @@ Trace file:
 RUN
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: >
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace85.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 IF 1 + 1 < 2 THEN 30
@@ -1273,16 +1237,7 @@ Trace file:
 RUN
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: <
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace86.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 IF 1 + 1 < 3 THEN 30
@@ -1291,16 +1246,7 @@ Trace file:
 RUN
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: <
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace87.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 LET x = 1
@@ -1317,7 +1263,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 [0m
@@ -1360,7 +1306,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: >
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1438,7 +1384,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1499,7 +1445,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1531,28 +1477,7 @@ RUN
 0
 QUIT
 [0m
-Demo output: 
-[36mSYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
-Your output: 
-[33mparseExp: Found extra token: THEN
-parseExp: Found extra token: <
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-[0m
+[31mMemory leak[0m
 Trace "Test/trace94.txt" ... [31;1mFail[0m
 Trace file: 
 [35m10 REM is prime
@@ -1588,8 +1513,8 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: >
-parseExp: Found extra token: THEN
+[33mSYNTAX ERROR
+SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1632,7 +1557,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1676,9 +1601,9 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
-parseExp: Found extra token: THEN
-parseExp: Found extra token: THEN
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1720,7 +1645,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1757,7 +1682,7 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: THEN
+[33mSYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 [0m
@@ -1802,8 +1727,8 @@ SYNTAX ERROR
 SYNTAX ERROR
 [0m
 Your output: 
-[33mparseExp: Found extra token: <
-parseExp: Found extra token: THEN
+[33mSYNTAX ERROR
+SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR

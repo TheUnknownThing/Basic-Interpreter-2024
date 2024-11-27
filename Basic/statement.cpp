@@ -28,7 +28,11 @@ LetStmt::LetStmt(TokenScanner &scanner) {
   if (scanner.nextToken() != "=") {
     error("SYNTAX ERROR");
   }
-  exp = parseExp(scanner);
+  try {
+    exp = parseExp(scanner);
+  } catch (...) {
+    error("SYNTAX ERROR");
+  }
   if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
   }
@@ -43,7 +47,11 @@ void LetStmt::execute(EvalState &state, Program &program) {
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) {
-  exp = parseExp(scanner);
+  try {
+    exp = parseExp(scanner);
+  } catch (...) {
+    error("SYNTAX ERROR");
+  }
   if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
   }
@@ -81,10 +89,13 @@ void GotoStmt::execute(EvalState &state, Program &program) {
 }
 
 IfStmt::IfStmt(TokenScanner &scanner) {
-  // IF exp cmp exp THEN n
-  exp1 = parseExp(scanner);
-  op = scanner.nextToken();
-  exp2 = parseExp(scanner);
+  try {
+    exp1 = parseExp(scanner);
+    op = scanner.nextToken();
+    exp2 = parseExp(scanner);
+  } catch (...) {
+    error("SYNTAX ERROR");
+  }
   if (scanner.nextToken() != "THEN") {
     error("SYNTAX ERROR");
   }
