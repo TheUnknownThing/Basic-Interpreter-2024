@@ -1,0 +1,1815 @@
+Compiling code ...
+Trace "Test/trace00.txt" ... [31;1mFail[0m
+Trace file: 
+[35mQUIT
+[0m
+Demo output: 
+[36m[0m
+Your output: 
+[33mSYNTAX ERROR
+[0m
+Trace "Test/trace01.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLIST
+QUIT
+[0m
+Demo output: 
+[36m[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace02.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+QUIT
+LIST
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace03.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace04.txt" ... [32;1mPass[0m
+Trace "Test/trace05.txt" ... [32;1mPass[0m
+Trace "Test/trace06.txt" ... [32;1mPass[0m
+Trace "Test/trace07.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+15 REM test line 3
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace08.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+10 REM test line 1 - modified
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace09.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+10
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace10.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+10
+LIST
+10 REM test line 1 - modified
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace11.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+30
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace12.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+30 REM test line 3
+15 REM test line 4
+25 REM test line 5
+10000 REM test line 6
+18 REM test line 7
+20
+22 REM test line 8
+19 REM test line 9
+10000 REM test line 10
+20000 REM test line 11
+10000
+20000
+LIST
+QUIT
+
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace13.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+20 REM test line 2
+30 REM test line 3
+20
+CLEAR
+LIST
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace14.txt" ... [31;1mFail[0m
+Trace file: 
+[35mCLEAR
+LIST
+QUIT
+[0m
+Demo output: 
+[36m[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace15.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 0
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m0
+SYNTAX ERROR
+[0m
+Trace "Test/trace16.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 + 1
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m2
+SYNTAX ERROR
+[0m
+Trace "Test/trace17.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1+1
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m2
+SYNTAX ERROR
+[0m
+Trace "Test/trace18.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 2 - 1
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m1
+SYNTAX ERROR
+[0m
+Trace "Test/trace19.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 2 * 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m6
+SYNTAX ERROR
+[0m
+Trace "Test/trace20.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 11 / 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m3
+SYNTAX ERROR
+[0m
+Trace "Test/trace21.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 3 / 0
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mDIVIDE BY ZERO
+SYNTAX ERROR
+[0m
+Trace "Test/trace22.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 0 / 0
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mDIVIDE BY ZERO
+SYNTAX ERROR
+[0m
+Trace "Test/trace23.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 0 - 6
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m-6
+SYNTAX ERROR
+[0m
+Trace "Test/trace24.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 + 1 + 1
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m3
+SYNTAX ERROR
+[0m
+Trace "Test/trace25.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 - 2 + 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m2
+SYNTAX ERROR
+[0m
+Trace "Test/trace26.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 10 - 4 - 5
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m1
+SYNTAX ERROR
+[0m
+Trace "Test/trace27.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 * 2 + 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m5
+SYNTAX ERROR
+[0m
+Trace "Test/trace28.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 + 2 * 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m7
+SYNTAX ERROR
+[0m
+Trace "Test/trace29.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 11 / 3 + 2 * 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m9
+SYNTAX ERROR
+[0m
+Trace "Test/trace30.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT (1 + 2) - 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m0
+SYNTAX ERROR
+[0m
+Trace "Test/trace31.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 10 - (4 + 5)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m1
+SYNTAX ERROR
+[0m
+Trace "Test/trace32.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 10 + (2 * 3)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m16
+SYNTAX ERROR
+[0m
+Trace "Test/trace33.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 10 * (2 + 3)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m50
+SYNTAX ERROR
+[0m
+Trace "Test/trace34.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m100
+SYNTAX ERROR
+[0m
+Trace "Test/trace35.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1+2*(3+4*(5+6*(7+8*(9))))
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m3839
+SYNTAX ERROR
+[0m
+Trace "Test/trace36.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT (0 - 11) / 3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m-3
+SYNTAX ERROR
+[0m
+Trace "Test/trace37.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT (0 - 11) / (0 - 3)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m3
+SYNTAX ERROR
+[0m
+Trace "Test/trace38.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1
+PRINT 2
+PRINT 3
+PRINT 4
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m1
+2
+3
+4
+SYNTAX ERROR
+[0m
+Trace "Test/trace39.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1 / (1 - 1)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mDIVIDE BY ZERO
+SYNTAX ERROR
+[0m
+Trace "Test/trace40.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT 1
+PRINT 1 + 1
+PRINT 1 + 1 + 1
+PRINT 1 + 1 + 1 + 1
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m1
+2
+3
+4
+SYNTAX ERROR
+[0m
+Trace "Test/trace41.txt" ... [31;1mFail[0m
+Trace file: 
+[35mPRINT (1)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33m1
+SYNTAX ERROR
+[0m
+Trace "Test/trace42.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m1
+SYNTAX ERROR
+[0m
+Trace "Test/trace43.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET AMultiCharVariable = 3
+PRINT AMultiCharVariable
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m3
+SYNTAX ERROR
+[0m
+Trace "Test/trace44.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+LET x = 2
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m2
+SYNTAX ERROR
+[0m
+Trace "Test/trace45.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+LET y = 2
+PRINT x
+PRINT y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m1
+2
+SYNTAX ERROR
+[0m
+Trace "Test/trace46.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+LET X = 2
+PRINT x
+PRINT X
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m1
+2
+SYNTAX ERROR
+[0m
+Trace "Test/trace47.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1 + 2 * (3 + 4)
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m15
+SYNTAX ERROR
+[0m
+Trace "Test/trace48.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+LET x = x + x
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m2
+SYNTAX ERROR
+[0m
+Trace "Test/trace49.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1 + (2 * 3)
+PRINT 4 + 5 * (x + 2)
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m49
+SYNTAX ERROR
+[0m
+Trace "Test/trace50.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+LET y = 2
+LET t = x
+LET x = y
+LET y = t
+PRINT x
+PRINT y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m2
+1
+SYNTAX ERROR
+[0m
+Trace "Test/trace51.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 2
+LET y = 3
+LET x = x + y
+LET y = x - y
+LET x = x - y
+PRINT x
+PRINT y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m3
+2
+SYNTAX ERROR
+[0m
+Trace "Test/trace52.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 1
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+LET x = x + x
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m1024
+SYNTAX ERROR
+[0m
+Trace "Test/trace53.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 4
+PRINT y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mVARIABLE NOT DEFINED
+SYNTAX ERROR
+[0m
+Trace "Test/trace54.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 3
+LET x = x + y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mVARIABLE NOT DEFINED
+SYNTAX ERROR
+[0m
+Trace "Test/trace55.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+3
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+3
+SYNTAX ERROR
+[0m
+Trace "Test/trace56.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+3
+INPUT y
+4
+PRINT x + y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+ ? SYNTAX ERROR
+7
+SYNTAX ERROR
+[0m
+Trace "Test/trace57.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+10
+LET x = x + x
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+20
+SYNTAX ERROR
+[0m
+Trace "Test/trace58.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+10
+INPUT y
+20
+LET t = x
+LET x = y
+LET y = t
+PRINT x
+PRINT y
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+ ? SYNTAX ERROR
+20
+10
+SYNTAX ERROR
+[0m
+Trace "Test/trace59.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+-20
+PRINT 0 - x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+20
+SYNTAX ERROR
+[0m
+Trace "Test/trace60.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+hello
+12
+PRINT x
+QUIT
+[0m
+[31mError occurred while running your program[0m
+Trace "Test/trace61.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+1 + 1
+108
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+SYNTAX ERROR
+1
+SYNTAX ERROR
+[0m
+Trace "Test/trace62.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+3.14
+43
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+SYNTAX ERROR
+3
+SYNTAX ERROR
+[0m
+Trace "Test/trace63.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+0xFF
+193
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+SYNTAX ERROR
+0
+SYNTAX ERROR
+[0m
+Trace "Test/trace64.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+000
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+0
+SYNTAX ERROR
+[0m
+Trace "Test/trace65.txt" ... [31;1mFail[0m
+Trace file: 
+[35mINPUT x
+3
+INPUT x
+4
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+ ? SYNTAX ERROR
+4
+SYNTAX ERROR
+[0m
+Trace "Test/trace66.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 100
+INPUT x
+200
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m ? SYNTAX ERROR
+200
+SYNTAX ERROR
+[0m
+Trace "Test/trace67.txt" ... [31;1mFail[0m
+Trace file: 
+[35mLET x = 3
+CLEAR
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+3
+SYNTAX ERROR
+[0m
+Trace "Test/trace68.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test line 1
+LIST
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace69.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 PRINT 1
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace70.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 PRINT 1
+RUN
+5 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace71.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 PRINT 1
+20 REM test line 1
+15 PRINT 2
+12 PRINT 3
+20 PRINT 4
+10 REM test line 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace72.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 LET x = 10
+20 LET x = 20
+15 PRINT x
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace73.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 PRINT x
+RUN
+LET x = 3
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace74.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 LET x = 1
+LET x = 2
+15 PRINT x
+PRINT x
+RUN
+PRINT x
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33m2
+SYNTAX ERROR
+2
+SYNTAX ERROR
+[0m
+Trace "Test/trace75.txt" ... [32;1mPass[0m
+Trace "Test/trace76.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 INPUT x
+20 PRINT x
+RUN
+3
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace77.txt" ... [32;1mPass[0m
+Trace "Test/trace78.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 LET x = 1
+20 LET x = 2
+30 PRINT x
+15 GOTO 30
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace79.txt" ... [32;1mPass[0m
+Trace "Test/trace80.txt" ... [32;1mPass[0m
+Trace "Test/trace81.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 IF 1 + 1 = 2 THEN 30
+20 PRINT 1
+30 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace82.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 IF 1 + 1 = 1 THEN 30
+20 PRINT 1
+30 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace83.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 IF 1 + 1 > 1 THEN 30
+20 PRINT 1
+30 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: >
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace84.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 IF 1 + 1 > 2 THEN 30
+20 PRINT 1
+30 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: >
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace85.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 IF 1 + 1 < 2 THEN 30
+20 PRINT 1
+30 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: <
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace86.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 IF 1 + 1 < 3 THEN 30
+20 PRINT 1
+30 PRINT 2
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: <
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace87.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 LET x = 1
+20 IF x = 1 THEN 40
+30 PRINT x
+40 PRINT 40
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace88.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 PRINT 1
+20 GOTO 30
+30 REM test line 1
+40 PRINT 2
+25 END
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace89.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 INPUT x
+20 IF x > 100 THEN 40
+30 GOTO 10
+40 PRINT x
+RUN
+10
+100
+200
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: >
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace90.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 INPUT x
+20 INPUT y
+30 GOTO 120
+40 GOTO 60
+50 GOTO 90
+60 GOTO 50
+70 GOTO 110
+80 GOTO 40
+90 GOTO 70
+100 GOTO 130
+110 GOTO 100
+120 GOTO 80
+130 PRINT x
+140 PRINT y
+RUN
+10
+20
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace91.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM calc x!
+20 INPUT x
+30 LET t = 1
+40 IF x = 0 THEN 80
+50 LET t = t * x
+60 LET x = x - 1
+70 GOTO 40
+80 PRINT t
+90 END
+RUN
+4
+RUN
+6
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace92.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM a / b + c / d
+20 INPUT a
+30 INPUT b
+40 INPUT c
+50 INPUT d
+60 LET x = a * d + b * c
+70 LET y = b * d
+80 LET p = x
+90 LET q = y
+100 IF p = 0 THEN 150
+110 LET t = q - q / p * p
+120 LET q = p
+130 LET p = t
+140 GOTO 100
+150 LET x = x / q
+160 LET y = y / q
+170 PRINT x
+180 PRINT y
+190 END
+RUN
+1
+6
+3
+4
+RUN
+1
+3
+4
+6
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace93.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM get Max value
+20 INPUT x
+30 LET max = x
+40 IF x = 0 THEN 90
+50 INPUT x
+60 IF x < max THEN 40
+70 LET max = x
+80 GOTO 40
+90 PRINT max
+RUN
+3
+100
+20
+120
+0
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+parseExp: Found extra token: <
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace94.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM is prime
+20 INPUT x
+30 LET i = 2
+40 IF i * i > x THEN 100
+50 IF x / i * i = x THEN 80
+60 LET i = i + 1
+70 GOTO 40
+80 PRINT 0
+90 END
+100 PRINT 1
+110 END
+RUN
+11
+RUN
+111
+RUN
+97
+RUN
+847
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: >
+parseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace95.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM reverse
+20 INPUT x
+30 LET y = 0
+40 IF x = 0 THEN 100
+50 LET y = y * 10
+60 LET z = x - x / 10 * 10
+70 LET y = y + z
+80 LET x = x / 10
+90 GOTO 40
+100 PRINT y
+110 END
+RUN
+1024
+RUN
+1000
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace96.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM test leap year ~~
+20 INPUT x
+30 IF x / 4 * 4 = x THEN 50
+40 GOTO 110
+50 IF x / 100 * 100 = x THEN 70
+60 GOTO 90
+70 IF x / 400 * 400 = x THEN 90
+80 GOTO 110
+90 PRINT 1
+100 END
+110 PRINT 0
+120 END
+RUN
+1992
+RUN
+2000
+RUN
+1900
+RUN
+2013
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+parseExp: Found extra token: THEN
+parseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace97.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM add
+20 INPUT x
+30 IF x = 0 THEN 60
+15 LET sum = 0
+40 LET sum = sum + x
+50 GOTO 20
+60 PRINT sum
+70 END
+RUN
+1
+2
+3
+4
+5
+0
+RUN
+0
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace98.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM calc SUM i = 1, 100, i
+20 LET sum = 0
+30 LET i = 1
+40 LET sum = sum + i
+50 IF i = 100 THEN 80
+60 LET i = i + 1
+70 GOTO 40
+80 PRINT sum
+90 END
+RUN
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Trace "Test/trace99.txt" ... [31;1mFail[0m
+Trace file: 
+[35m10 REM print fibonacci
+20 INPUT n
+30 IF n < 1 THEN 20
+40 LET n = n - 1
+50 PRINT 1
+60 LET a = 0
+70 LET b = 1
+80 IF n = 0 THEN 150
+90 LET c = a + b
+100 LET a = b
+110 LET b = c
+120 PRINT b
+130 LET n = n - 1
+140 GOTO 80
+150 END
+RUN
+3
+RUN
+0
+10
+QUIT
+[0m
+Demo output: 
+[36mSYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+Your output: 
+[33mparseExp: Found extra token: <
+parseExp: Found extra token: THEN
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+[0m
+7 / 100 trace(s) passed.
+Final Score: 0.5

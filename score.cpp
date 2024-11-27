@@ -8,7 +8,7 @@ const string traceFolder = "Test/";
 const string defaultStudentBasic = "./testcode";
 const string defaultStanderBasic = "./Basic-Demo-64bit";
 
-const int traceCount = 10;
+const int traceCount = 100;
 const string traces[100] = {
         "trace00.txt", "trace01.txt", "trace02.txt", "trace03.txt", "trace04.txt", "trace05.txt", "trace06.txt",
         "trace07.txt", "trace08.txt", "trace09.txt",
@@ -176,6 +176,7 @@ void showScore() {
 }
 
 int main(int argc, char **argv) {
+    freopen("debug.txt", "w", stdout);
     parseArguments(argc, argv);
     try {
         cout << "Compiling code ..." << endl;

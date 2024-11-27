@@ -54,8 +54,10 @@ void processLine(std::string line, Program &program, EvalState &state) {
   // Support control sequence: LIST, RUN, CLEAR, QUIT, HELP
   if (line == "QUIT") {
     state.Clear();
+    program.clear();
     exit(0);
   } else if (line == "CLEAR") {
+    state.Clear();
     program.clear();
   } else if (line == "HELP") {
     std::cout << "This is a simple BASIC interpreter." << std::endl;
@@ -126,12 +128,15 @@ void processLine(std::string line, Program &program, EvalState &state) {
       if (token == "LET") {
         LetStmt *stmt = new LetStmt(scanner);
         stmt->execute(state, program);
+        delete stmt;
       } else if (token == "PRINT") {
         PrintStmt *stmt = new PrintStmt(scanner);
         stmt->execute(state, program);
+        delete stmt;
       } else if (token == "INPUT") {
         InputStmt *stmt = new InputStmt(scanner);
         stmt->execute(state, program);
+        delete stmt;
       } else {
         error("SYNTAX ERROR");
       }
