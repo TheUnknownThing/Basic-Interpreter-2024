@@ -129,6 +129,7 @@ private:
 class IfStmt : public Statement {
 public:
     IfStmt(TokenScanner &scanner);
+    ~IfStmt();
     void execute(EvalState &state, Program &program) override;
 private:
     Expression *exp1, *exp2;

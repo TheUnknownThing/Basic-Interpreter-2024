@@ -8,7 +8,30 @@ const string traceFolder = "Test/";
 const string defaultStudentBasic = "./testcode";
 const string defaultStanderBasic = "./Basic-Demo-64bit";
 
-int traceCount = 10; // 默认评测个数
+const int traceCount = 10;
+const string traces[100] = {
+        "trace00.txt", "trace01.txt", "trace02.txt", "trace03.txt", "trace04.txt", "trace05.txt", "trace06.txt",
+        "trace07.txt", "trace08.txt", "trace09.txt",
+        "trace10.txt", "trace11.txt", "trace12.txt", "trace13.txt", "trace14.txt", "trace15.txt", "trace16.txt",
+        "trace17.txt", "trace18.txt", "trace19.txt",
+        "trace20.txt", "trace21.txt", "trace22.txt", "trace23.txt", "trace24.txt", "trace25.txt", "trace26.txt",
+        "trace27.txt", "trace28.txt", "trace29.txt",
+        "trace30.txt", "trace31.txt", "trace32.txt", "trace33.txt", "trace34.txt", "trace35.txt", "trace36.txt",
+        "trace37.txt", "trace38.txt", "trace39.txt",
+        "trace40.txt", "trace41.txt", "trace42.txt", "trace43.txt", "trace44.txt", "trace45.txt", "trace46.txt",
+        "trace47.txt", "trace48.txt", "trace49.txt",
+        "trace50.txt", "trace51.txt", "trace52.txt", "trace53.txt", "trace54.txt", "trace55.txt", "trace56.txt",
+        "trace57.txt", "trace58.txt", "trace59.txt",
+        "trace60.txt", "trace61.txt", "trace62.txt", "trace63.txt", "trace64.txt", "trace65.txt", "trace66.txt",
+        "trace67.txt", "trace68.txt", "trace69.txt",
+        "trace70.txt", "trace71.txt", "trace72.txt", "trace73.txt", "trace74.txt", "trace75.txt", "trace76.txt",
+        "trace77.txt", "trace78.txt", "trace79.txt",
+        "trace80.txt", "trace81.txt", "trace82.txt", "trace83.txt", "trace84.txt", "trace85.txt", "trace86.txt",
+        "trace87.txt", "trace88.txt", "trace89.txt",
+        "trace90.txt", "trace91.txt", "trace92.txt", "trace93.txt", "trace94.txt", "trace95.txt", "trace96.txt",
+        "trace97.txt", "trace98.txt", "trace99.txt",
+};
+
 string studentBasic = "";
 string standerBasic = "";
 string traceFile = "";
@@ -19,15 +42,14 @@ int correct = 0, wrong = 0, total = 0;
 
 void usage(const char *progname) {
     cout
-            << progname << " [-h] [-e <your_exec>] [-s <stander_exec>] [-t <trace_file>] [-f] [-m] [-q] [-n <trace_count>]" << endl
+            << progname << " [-h] [-e <your_exec>] [-s <stander_exec>] [-t <trace_file>] [-f] [-m] [-q]" << endl
             << "    -h  Show this message and quit" << endl
             << "    -e  Specify your executable file, default value: " << defaultStudentBasic << endl
             << "    -s  Specify demo executable file, default value: " << defaultStanderBasic << endl
             << "    -t  Run specified trace file" << endl
             << "    -f  Stop at first failed test" << endl
             << "    -m  Hide error message" << endl
-            << "    -q  Show final score only, cannot use with -t or -f, include -m" << endl
-            << "    -n  Specify number of traces to run, default value: 10" << endl;
+            << "    -q  Show final score only, cannot use with -t or -f, include -m" << endl;
     exit(1);
 }
 
@@ -39,7 +61,7 @@ string color(string ce) {
 void parseArguments(int argc, char **argv) {
     int c;
     opterr = 0;
-    while ((c = getopt(argc, argv, "e:s:t:fmqhn:")) != -1) {
+    while ((c = getopt(argc, argv, "e:s:t:fmqch")) != -1) {
         switch (c) {
             case 'e':
                 if (studentBasic.size()) usage(argv[0]);
@@ -64,10 +86,6 @@ void parseArguments(int argc, char **argv) {
             case 'q':
                 if (silent) usage(argv[0]);
                 silent = true;
-                break;
-            case 'n':
-                traceCount = atoi(optarg);
-                if (traceCount <= 0) usage(argv[0]);
                 break;
             case 'h':
                 usage(argv[0]);
@@ -164,14 +182,12 @@ int main(int argc, char **argv) {
         /**************************************************************
          if you modify the structure of the files, you should modify the file paths here.
          **************************************************************/
-        system("g++ -std=c++17 -o testcode Basic/Basic.cpp Basic/evalstate.cpp Basic/exp.cpp Basic/parser.cpp Basic/program.cpp Basic/statement.cpp Basic/Utils/error.cpp Basic/Utils/tokenScanner.cpp Basic/Utils/strlib.cpp");
+        system("g++ -o testcode Basic/Basic.cpp Basic/evalstate.cpp Basic/exp.cpp Basic/parser.cpp Basic/program.cpp Basic/statement.cpp Basic/Utils/error.cpp Basic/Utils/error.hpp Basic/Utils/tokenScanner.cpp Basic/Utils/tokenScanner.hpp Basic/Utils/strlib.cpp");
         system("chmod a+rwx Basic-Demo-64bit");
         if (traceFile.size()) runTest(traceFile);
         else {
-            for (int i = 0; i < traceCount; i++) {
-                string traceName = traceFolder + "trace" + (i < 10 ? "0" : "") + to_string(i) + ".txt";
-                runTest(traceName);
-            }
+            int i = 0;
+            for (; i < traceCount; i++) runTest(traceFolder + traces[i]);
         }
     } catch (...) {}
     system("rm testcode -f");

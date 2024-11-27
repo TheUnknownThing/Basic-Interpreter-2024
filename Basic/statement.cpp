@@ -34,7 +34,9 @@ LetStmt::LetStmt(TokenScanner &scanner) {
   }
 }
 
-LetStmt::~LetStmt() { delete exp; }
+LetStmt::~LetStmt() { 
+    delete exp; 
+}
 
 void LetStmt::execute(EvalState &state, Program &program) {
   state.setValue(var, exp->eval(state));
@@ -106,6 +108,11 @@ void IfStmt::execute(EvalState &state, Program &program) {
   } else if (op == "<>" && exp1->eval(state) != exp2->eval(state)) {
     program.setCurrentLine(lineNumber);
   }
+}
+
+IfStmt::~IfStmt() {
+  delete exp1;
+  delete exp2;
 }
 
 EndStmt::EndStmt() {}

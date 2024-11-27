@@ -53,6 +53,7 @@ int main() {
 void processLine(std::string line, Program &program, EvalState &state) {
   // Support control sequence: LIST, RUN, CLEAR, QUIT, HELP
   if (line == "QUIT") {
+    state.Clear();
     exit(0);
   } else if (line == "CLEAR") {
     program.clear();
