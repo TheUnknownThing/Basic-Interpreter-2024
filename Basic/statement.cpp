@@ -28,7 +28,8 @@ void RemStmt::execute(EvalState &state, Program &program) {
 
 LetStmt::LetStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
-  if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" || var == "IF" || var == "END") {
+  if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" ||
+      var == "IF" || var == "END") {
     std::cout << "SYNTAX ERROR" << std::endl;
   }
   if (scanner.nextToken() != "=") {
@@ -51,11 +52,8 @@ void LetStmt::execute(EvalState &state, Program &program) {
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
-  try {
-    exp = parseExp(scanner);
-  } catch (...) {
-    std::cout << "SYNTAX ERROR" << std::endl;
-  }
+  exp = parseExp(scanner);
+
   if (scanner.hasMoreTokens()) {
     std::cout << "SYNTAX ERROR" << std::endl;
   }
@@ -68,7 +66,11 @@ PrintStmt::~PrintStmt() {
 }
 
 void PrintStmt::execute(EvalState &state, Program &program) {
-  std::cout << exp->eval(state) << std::endl;
+  try {
+    std::cout << exp->eval(state) << std::endl;
+  } catch (ErrorException &ex) {
+    std::cout << ex.getMessage() << std::endl;
+  }
 }
 
 InputStmt::InputStmt(TokenScanner &scanner) {
@@ -120,9 +122,9 @@ void GotoStmt::execute(EvalState &state, Program &program) {
 
 IfStmt::IfStmt(TokenScanner &scanner) {
   try {
-    //std::string token = scanner.nextToken();
-    //std::cout << token << std::endl;
-    //scanner.saveToken(token);
+    // std::string token = scanner.nextToken();
+    // std::cout << token << std::endl;
+    // scanner.saveToken(token);
     exp1 = parseExp(scanner);
     op = scanner.nextToken();
     exp2 = parseExp(scanner);
