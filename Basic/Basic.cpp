@@ -80,7 +80,6 @@ void processLine(std::string line, Program &program, EvalState &state) {
           std::cout << "SYNTAX ERROR" << std::endl;
         }
         stmt->execute(state, program);
-        delete stmt; // P2bc1
         lineNumber = program.nextLine();
         program.setCurrentLine(lineNumber);
       }
@@ -97,6 +96,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
       scanner.scanStrings();
       token = scanner.nextToken();
       Statement *stmt = nullptr;
+      scanner.scanNumbers();
       if (token == "REM") {
         stmt = new RemStmt(scanner);
       } else if (token == "LET") {
@@ -113,20 +113,12 @@ void processLine(std::string line, Program &program, EvalState &state) {
         stmt = new EndStmt();
       } else if (token == "") {
         // delete the line
-        Statement *oldStmt = program.getParsedStatement(lineNumber); // P0fb2
-        if (oldStmt != nullptr) { // P0fb2
-          delete oldStmt; // P0fb2
-        } // P0fb2
         program.removeSourceLine(lineNumber);
       } 
       else {
         std::cout << "SYNTAX ERROR" << std::endl;
       }
       if (stmt != nullptr) {
-        Statement *oldStmt = program.getParsedStatement(lineNumber); // P8bbd
-        if (oldStmt != nullptr) { // P8bbd
-          delete oldStmt; // P8bbd
-        } // P8bbd
         program.addSourceLine(lineNumber, line);
         program.setParsedStatement(lineNumber, stmt);
       }

@@ -113,14 +113,19 @@ void GotoStmt::execute(EvalState &state, Program &program) {
 
 IfStmt::IfStmt(TokenScanner &scanner) {
   try {
+    //std::string token = scanner.nextToken();
+    //std::cout << token << std::endl;
+    //scanner.saveToken(token);
     exp1 = parseExp(scanner);
     op = scanner.nextToken();
     exp2 = parseExp(scanner);
   } catch (...) {
     std::cout << "SYNTAX ERROR" << std::endl;
+    return;
   }
   if (scanner.nextToken() != "THEN") {
     std::cout << "SYNTAX ERROR" << std::endl;
+    return;
   }
   lineNumber = stringToInt(scanner.nextToken());
   if (scanner.hasMoreTokens()) {
@@ -129,6 +134,10 @@ IfStmt::IfStmt(TokenScanner &scanner) {
 }
 
 void IfStmt::execute(EvalState &state, Program &program) {
+  if (!program.findLine(lineNumber)) {
+    error("LINE NUMBER ERROR");
+    return;
+  }
   if (op == "=" && exp1->eval(state) == exp2->eval(state)) {
     program.setCurrentLine(lineNumber);
   } else if (op == "<" && exp1->eval(state) < exp2->eval(state)) {
