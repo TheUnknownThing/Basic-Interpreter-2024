@@ -109,7 +109,11 @@ void processLine(std::string line, Program &program, EvalState &state) {
         stmt = new IfStmt(scanner);
       } else if (token == "END") {
         stmt = new EndStmt();
-      } else {
+      } else if (token == "") {
+        // delete the line
+        program.removeSourceLine(lineNumber);
+      } 
+      else {
         error("SYNTAX ERROR");
       }
       if (stmt != nullptr) {
