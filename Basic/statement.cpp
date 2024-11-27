@@ -18,8 +18,6 @@ Statement::Statement() = default;
 
 Statement::~Statement() = default;
 
-//todo
-
 RemStmt::RemStmt(TokenScanner &scanner) {
     //todo
 }

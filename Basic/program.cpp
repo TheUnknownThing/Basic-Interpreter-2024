@@ -79,3 +79,9 @@ int Program::getNextLineNumber(int lineNumber) {
     return *it;
   }
 }
+
+void Program::listAllLines() {
+  for (int lineNumber : lineNumbers) {
+    std::cout << sourceLines[lineNumber] << std::endl;
+  }
+}

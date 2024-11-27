@@ -53,18 +53,53 @@ int main() {
 
 
 void processLine(std::string line, Program &program, EvalState &state) {
-    TokenScanner scanner;
-    scanner.ignoreWhitespace();
-    scanner.scanNumbers(); // ignore the number at the beginning of the line
-    scanner.setInput(line);
-
-    // Token type: WORD, NUMBER, OPERATOR, SEPARATOR, STRING, EOF
-
-    //todo
-    while (scanner.hasMoreTokens()) {
-        std::string token = scanner.nextToken();
-        // ... process the token ...
-        TokenType type = scanner.getTokenType(token);
+    // Support control sequence: LIST, RUN, CLEAR, QUIT, HELP
+    if (line == "QUIT") {
+        exit(0);
+    } else if (line == "CLEAR") {
+        program.clear();
+    } else if (line == "HELP") {
+        std::cout << "This is a simple BASIC interpreter." << std::endl;
+        std::cout << "  LIST: List all the lines of the program." << std::endl;
+        std::cout << "  RUN: Run the program." << std::endl;
+        std::cout << "  CLEAR: Clear the program." << std::endl;
+        std::cout << "  QUIT: Quit the interpreter." << std::endl;
+    } else if (line == "LIST") {
+        int firstLine = program.getFirstLineNumber();
+        if (firstLine == -1) {
+            std::cout << "No lines in the program." << std::endl;
+        } else {
+            program.listAllLines();
+        }
+    } else if (line == "RUN") {
+        int firstLine = program.getFirstLineNumber();
+        if (firstLine == -1) {
+            std::cout << "No lines in the program." << std::endl;
+        } else {
+            int lineNumber = firstLine;
+            while (lineNumber != -1) {
+                Statement *stmt = program.getParsedStatement(lineNumber);
+                if (stmt == nullptr) {
+                    error("LINE NUMBER ERROR");
+                }
+                stmt->execute(state, program);
+                lineNumber = program.getNextLineNumber(lineNumber);
+            }
+        }
+    } else {
+        // if the line begins with a number, add it to the program
+        // if the line not begin with a number, it is an expression
+        TokenScanner scanner;
+        scanner.ignoreWhitespace();
+        scanner.scanNumbers();
+        scanner.setInput(line);
+        if (scanner.getTokenType(scanner.nextToken()) == NUMBER) {
+            int lineNumber = stringToInteger(scanner.nextToken());
+            program.addSourceLine(lineNumber, line);
+        } else {
+            // parse LET, PRINT and INPUT statement
+            
+        }
     }
 }
 

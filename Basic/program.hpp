@@ -143,7 +143,9 @@ public:
     //more func to add
     //todo
 
-private:T
+    void listAllLines();
+
+private:
 
     // Fill this in with whatever types and instance variables you need
     std::unordered_map<int, std::string> sourceLines;
