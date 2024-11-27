@@ -54,7 +54,7 @@ void usage(const char *progname) {
 }
 
 string color(string ce) {
-    if (useColor) return ce;
+    // if (useColor) return ce;
     return "";
 }
 
@@ -191,7 +191,7 @@ int main(int argc, char **argv) {
             for (; i < traceCount; i++) runTest(traceFolder + traces[i]);
         }
     } catch (...) {}
-    system("rm testcode -f");
+    // system("rm testcode -f");
     showScore();
     return 0;
 }

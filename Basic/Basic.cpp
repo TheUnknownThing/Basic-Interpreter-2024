@@ -95,29 +95,35 @@ void processLine(std::string line, Program &program, EvalState &state) {
     std::string token = scanner.nextToken();
     if (scanner.getTokenType(token) == NUMBER) {
       int lineNumber = stringToInteger(token);
-      program.addSourceLine(lineNumber, line);
       scanner.scanStrings();
       token = scanner.nextToken();
       // parse the statement
       if (token == "REM") {
+        program.addSourceLine(lineNumber, line);
         RemStmt *stmt = new RemStmt(scanner);
         program.setParsedStatement(lineNumber, stmt);
       } else if (token == "LET") {
+        program.addSourceLine(lineNumber, line);
         LetStmt *stmt = new LetStmt(scanner);
         program.setParsedStatement(lineNumber, stmt);
       } else if (token == "PRINT") {
+        program.addSourceLine(lineNumber, line);
         PrintStmt *stmt = new PrintStmt(scanner);
         program.setParsedStatement(lineNumber, stmt);
       } else if (token == "INPUT") {
+        program.addSourceLine(lineNumber, line);
         InputStmt *stmt = new InputStmt(scanner);
         program.setParsedStatement(lineNumber, stmt);
       } else if (token == "GOTO") {
+        program.addSourceLine(lineNumber, line);
         GotoStmt *stmt = new GotoStmt(scanner);
         program.setParsedStatement(lineNumber, stmt);
       } else if (token == "IF") {
+        program.addSourceLine(lineNumber, line);
         IfStmt *stmt = new IfStmt(scanner);
         program.setParsedStatement(lineNumber, stmt);
       } else if (token == "END") {
+        program.addSourceLine(lineNumber, line);
         EndStmt *stmt = new EndStmt();
         program.setParsedStatement(lineNumber, stmt);
       } else {

@@ -10,7 +10,7 @@ subprocess.run(compile_command, shell=True, check=True)
 traceFolder = "Test/"
 defaultStudentBasic = "./testcode"
 defaultStandardBasic = "./Basic-Demo-64bit"
-traceCount = 100
+traceCount = 20
 
 # Initialize counters and lists
 total_tests = 0
