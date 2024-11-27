@@ -128,6 +128,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
         program.setParsedStatement(lineNumber, stmt);
       } else {
         error("SYNTAX ERROR");
+        scanner.~TokenScanner();
       }
     } else if (scanner.getTokenType(token) == WORD) {
       // directly execute LET, PRINT and INPUT statement
