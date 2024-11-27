@@ -64,11 +64,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
     std::cout << "  QUIT: Quit the interpreter." << std::endl;
   } else if (line == "LIST") {
     int firstLine = program.getFirstLineNumber();
-    if (firstLine == -1) {
-      error("SYNTAX ERROR");
-    } else {
-      program.listAllLines();
-    }
+    program.listAllLines();
   } else if (line == "RUN") {
     int firstLine = program.getFirstLineNumber();
     if (firstLine == -1) {

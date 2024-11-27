@@ -13,9 +13,12 @@
 
 Program::Program() = default;
 
-Program::~Program() = default;
+Program::~Program() { clear(); }
 
 void Program::clear() {
+  for (auto &pair : parsedStatements) {
+    delete pair.second;
+  }
   sourceLines.clear();
   parsedStatements.clear();
   lineNumbers.clear();
@@ -33,6 +36,10 @@ void Program::removeSourceLine(int lineNumber) {
   if (sourceLines.find(lineNumber) != sourceLines.end()) {
     sourceLines.erase(lineNumber);
     lineNumbers.erase(lineNumber);
+    if (parsedStatements.find(lineNumber) != parsedStatements.end()) {
+      delete parsedStatements[lineNumber];
+      parsedStatements.erase(lineNumber);
+    }
   }
 }
 
@@ -86,15 +93,11 @@ void Program::listAllLines() {
   }
 }
 
-void Program::setCurrentLine(int lineNumber) {
-  currentLine = lineNumber;
-}
+void Program::setCurrentLine(int lineNumber) { currentLine = lineNumber; }
 
-int Program::getCurrentLine() {
-  return currentLine;
-}
+int Program::getCurrentLine() { return currentLine; }
 
-int Program::nextLine(){
+int Program::nextLine() {
   if (lineNumbers.empty() || currentLine == -1) {
     return -1;
   }
