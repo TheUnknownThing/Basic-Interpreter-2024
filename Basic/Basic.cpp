@@ -114,8 +114,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
       } else if (token == "") {
         // delete the line
         program.removeSourceLine(lineNumber);
-      } 
-      else {
+      } else {
         std::cout << "SYNTAX ERROR" << std::endl;
       }
       if (stmt != nullptr) {

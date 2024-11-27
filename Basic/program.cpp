@@ -57,6 +57,7 @@ void Program::setParsedStatement(int lineNumber, Statement *stmt) {
     error("LINE NUMBER ERROR");
   } else {
     if (parsedStatements.find(lineNumber) != parsedStatements.end()) {
+      delete parsedStatements[lineNumber];
       parsedStatements.erase(lineNumber);
     }
     parsedStatements[lineNumber] = stmt;
