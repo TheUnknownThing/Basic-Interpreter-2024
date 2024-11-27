@@ -145,12 +145,19 @@ public:
 
     void listAllLines();
 
+    void setCurrentLine(int lineNumber);
+
+    int getCurrentLine();
+
+    int nextLine();
+
 private:
 
     // Fill this in with whatever types and instance variables you need
     std::unordered_map<int, std::string> sourceLines;
     std::unordered_map<int, Statement *> parsedStatements;
     std::set <int> lineNumbers;
+    int currentLine = -1;
 };
 
 #endif

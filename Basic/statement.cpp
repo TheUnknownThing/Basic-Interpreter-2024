@@ -9,7 +9,6 @@
 
 #include "statement.hpp"
 
-
 /* Implementation of the Statement class */
 
 int stringToInt(std::string str);
@@ -18,70 +17,101 @@ Statement::Statement() = default;
 
 Statement::~Statement() = default;
 
-RemStmt::RemStmt(TokenScanner &scanner) {
-    //todo
-}
+RemStmt::RemStmt(TokenScanner &scanner) {}
 
 void RemStmt::execute(EvalState &state, Program &program) {
-    //todo
+  // do nothing
 }
 
 LetStmt::LetStmt(TokenScanner &scanner) {
-    //todo
+  var = scanner.nextToken();
+  if (scanner.nextToken() != "=") {
+    error("SYNTAX ERROR");
+  }
+  exp = parseExp(scanner);
+  if (scanner.hasMoreTokens()) {
+    error("SYNTAX ERROR");
+  }
 }
 
-LetStmt::~LetStmt() {
-    //todo
-}
+LetStmt::~LetStmt() { delete exp; }
 
 void LetStmt::execute(EvalState &state, Program &program) {
-    //todo
+  state.setValue(var, exp->eval(state));
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) {
-    //todo
+  exp = parseExp(scanner);
+  if (scanner.hasMoreTokens()) {
+    error("SYNTAX ERROR");
+  }
 }
 
-PrintStmt::~PrintStmt() {
-    //todo
-}
+PrintStmt::~PrintStmt() { delete exp; }
 
 void PrintStmt::execute(EvalState &state, Program &program) {
-    //todo
+  std::cout << exp->eval(state) << std::endl;
 }
 
 InputStmt::InputStmt(TokenScanner &scanner) {
-    //todo
+  var = scanner.nextToken();
+  if (scanner.hasMoreTokens()) {
+    error("SYNTAX ERROR");
+  }
 }
 
 void InputStmt::execute(EvalState &state, Program &program) {
-    //todo
+  std::string input;
+  std::cout << " ? ";
+  std::cin >> input;
+  state.setValue(var, stringToInt(input));
 }
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
-    //todo
+  lineNumber = stringToInt(scanner.nextToken());
+  if (scanner.hasMoreTokens()) {
+    error("SYNTAX ERROR");
+  }
 }
 
 void GotoStmt::execute(EvalState &state, Program &program) {
-    //todo
+  program.setCurrentLine(lineNumber);
 }
 
 IfStmt::IfStmt(TokenScanner &scanner) {
-    //todo
+  // IF exp cmp exp THEN n
+  exp1 = parseExp(scanner);
+  op = scanner.nextToken();
+  exp2 = parseExp(scanner);
+  if (scanner.nextToken() != "THEN") {
+    error("SYNTAX ERROR");
+  }
+  lineNumber = stringToInt(scanner.nextToken());
+  if (scanner.hasMoreTokens()) {
+    error("SYNTAX ERROR");
+  }
 }
 
 void IfStmt::execute(EvalState &state, Program &program) {
-    //todo
+  if (op == "=" && exp1->eval(state) == exp2->eval(state)) {
+    program.setCurrentLine(lineNumber);
+  } else if (op == "<" && exp1->eval(state) < exp2->eval(state)) {
+    program.setCurrentLine(lineNumber);
+  } else if (op == ">" && exp1->eval(state) > exp2->eval(state)) {
+    program.setCurrentLine(lineNumber);
+  } else if (op == "<=" && exp1->eval(state) <= exp2->eval(state)) {
+    program.setCurrentLine(lineNumber);
+  } else if (op == ">=" && exp1->eval(state) >= exp2->eval(state)) {
+    program.setCurrentLine(lineNumber);
+  } else if (op == "<>" && exp1->eval(state) != exp2->eval(state)) {
+    program.setCurrentLine(lineNumber);
+  }
 }
 
-EndStmt::EndStmt() {
-    //todo
-}
+EndStmt::EndStmt() {}
 
 void EndStmt::execute(EvalState &state, Program &program) {
-    //todo
+  program.setCurrentLine(-1);
 }
 
-int stringToInt(std::string str) {
-    return std::stoi(str);
-}
+int stringToInt(std::string str) { return std::stoi(str); }

@@ -85,3 +85,18 @@ void Program::listAllLines() {
     std::cout << sourceLines[lineNumber] << std::endl;
   }
 }
+
+void Program::setCurrentLine(int lineNumber) {
+  currentLine = lineNumber;
+}
+
+int Program::getCurrentLine() {
+  return currentLine;
+}
+
+int Program::nextLine(){
+  if (lineNumbers.empty() || currentLine == -1) {
+    return -1;
+  }
+  return getNextLineNumber(currentLine);
+}
