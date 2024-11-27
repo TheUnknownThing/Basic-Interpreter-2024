@@ -14,6 +14,7 @@
 
 #include <string>
 #include <sstream>
+#include <cstdlib>
 #include "evalstate.hpp"
 #include "exp.hpp"
 #include "Utils/tokenScanner.hpp"

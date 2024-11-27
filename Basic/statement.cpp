@@ -8,8 +8,11 @@
  */
 
 #include "statement.hpp"
+#include "Utils/error.hpp"
 
 /* Implementation of the Statement class */
+
+bool isDecimal(const std::string &input);
 
 int stringToInt(std::string str);
 
@@ -38,9 +41,7 @@ LetStmt::LetStmt(TokenScanner &scanner) {
   }
 }
 
-LetStmt::~LetStmt() { 
-    delete exp; 
-}
+LetStmt::~LetStmt() { delete exp; }
 
 void LetStmt::execute(EvalState &state, Program &program) {
   state.setValue(var, exp->eval(state));
@@ -72,13 +73,26 @@ InputStmt::InputStmt(TokenScanner &scanner) {
 
 void InputStmt::execute(EvalState &state, Program &program) {
   std::string input;
-  std::cout << " ? ";
-  std::getline(std::cin, input);
-  // state.setValue(var, stringToInt(input));
+  int value;
+  while (true) {
+    std::cout << " ? ";
+    std::getline(std::cin, input);
+    if (input.empty()) {
+      std::cout << "INVALID NUMBER" << std::endl;
+    } else {
+      if (isDecimal(input)) {
+        value = stringToInt(input);
+        break;
+      } else {
+        std::cout << "INVALID NUMBER" << std::endl;
+      }
+    }
+  }
+
   try {
-    state.setValue(var, stringToInt(input));
+    state.setValue(var, value);
   } catch (...) {
-    error("INVALID NUMBER");
+    std::cout << "INVALID NUMBER" << std::endl;
   }
 }
 
@@ -135,6 +149,22 @@ EndStmt::EndStmt() {}
 
 void EndStmt::execute(EvalState &state, Program &program) {
   program.setCurrentLine(-1);
+}
+
+bool isDecimal(const std::string &input) {
+  if (input.empty())
+    return false;
+
+  size_t start = 0;
+  if (input[0] == '+' || input[0] == '-')
+    start = 1;
+
+  for (size_t i = start; i < input.length(); ++i) {
+    if (!isdigit(input[i]))
+      return false;
+  }
+
+  return true;
 }
 
 int stringToInt(std::string str) { return std::stoi(str); }
