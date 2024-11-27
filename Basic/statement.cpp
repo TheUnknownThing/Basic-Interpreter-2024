@@ -28,6 +28,9 @@ void RemStmt::execute(EvalState &state, Program &program) {
 
 LetStmt::LetStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
+  if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" || var == "IF" || var == "END") {
+    std::cout << "SYNTAX ERROR" << std::endl;
+  }
   if (scanner.nextToken() != "=") {
     std::cout << "SYNTAX ERROR" << std::endl;
   }
