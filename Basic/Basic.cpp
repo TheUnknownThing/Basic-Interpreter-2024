@@ -70,13 +70,14 @@ void processLine(std::string line, Program &program, EvalState &state) {
   } else if (line == "RUN") {
     int firstLine = program.getFirstLineNumber();
     if (firstLine == -1) {
-      error("SYNTAX ERROR");
+      std::cout << "SYNTAX ERROR" << std::endl;
     } else {
       int lineNumber = firstLine;
+      program.setCurrentLine(lineNumber);
       while (lineNumber != -1) {
         Statement *stmt = program.getParsedStatement(lineNumber);
         if (stmt == nullptr) {
-          error("SYNTAX ERROR");
+          std::cout << "SYNTAX ERROR" << std::endl;
         }
         stmt->execute(state, program);
         lineNumber = program.nextLine();
@@ -114,7 +115,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
         program.removeSourceLine(lineNumber);
       } 
       else {
-        error("SYNTAX ERROR");
+        std::cout << "SYNTAX ERROR" << std::endl;
       }
       if (stmt != nullptr) {
         program.addSourceLine(lineNumber, line);
@@ -134,10 +135,10 @@ void processLine(std::string line, Program &program, EvalState &state) {
         stmt->execute(state, program);
         delete stmt;
       } else {
-        error("SYNTAX ERROR");
+        std::cout << "SYNTAX ERROR" << std::endl;
       }
     } else {
-      error("SYNTAX ERROR");
+      std::cout << "SYNTAX ERROR" << std::endl;
     }
   }
 }

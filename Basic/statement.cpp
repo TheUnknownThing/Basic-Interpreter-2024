@@ -29,15 +29,15 @@ void RemStmt::execute(EvalState &state, Program &program) {
 LetStmt::LetStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
   if (scanner.nextToken() != "=") {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
   try {
     exp = parseExp(scanner);
   } catch (...) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
   if (scanner.hasMoreTokens()) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
 }
 
@@ -51,10 +51,10 @@ PrintStmt::PrintStmt(TokenScanner &scanner) {
   try {
     exp = parseExp(scanner);
   } catch (...) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
   if (scanner.hasMoreTokens()) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
 }
 
@@ -67,7 +67,7 @@ void PrintStmt::execute(EvalState &state, Program &program) {
 InputStmt::InputStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
   if (scanner.hasMoreTokens()) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
 }
 
@@ -99,7 +99,7 @@ void InputStmt::execute(EvalState &state, Program &program) {
 GotoStmt::GotoStmt(TokenScanner &scanner) {
   lineNumber = stringToInt(scanner.nextToken());
   if (scanner.hasMoreTokens()) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
 }
 
@@ -113,14 +113,14 @@ IfStmt::IfStmt(TokenScanner &scanner) {
     op = scanner.nextToken();
     exp2 = parseExp(scanner);
   } catch (...) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
   if (scanner.nextToken() != "THEN") {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
   lineNumber = stringToInt(scanner.nextToken());
   if (scanner.hasMoreTokens()) {
-    error("SYNTAX ERROR");
+    std::cout << "SYNTAX ERROR" << std::endl;
   }
 }
 
