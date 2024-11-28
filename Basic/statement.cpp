@@ -150,6 +150,9 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
   std::cout << "op:" << op_str << std::endl;
   std::cout << "exp2:" << exp2_str << std::endl;
   std::cout << "line:" << line_str << std::endl;*/
+  if (exp1_str.empty() || op_str.empty() || exp2_str.empty() || line_str.empty()) {
+    error("SYNTAX ERROR");
+  }
 
   TokenScanner exp1_scanner;
   exp1_scanner.ignoreWhitespace();
@@ -179,17 +182,11 @@ void IfStmt::execute(EvalState &state, Program &program) {
     error("LINE NUMBER ERROR");
   }
   if (op == "=" && exp1->eval(state) == exp2->eval(state)) {
-    program.setCurrentLine(lineNumber);
+    program.setCurrentLine(lineNumber - 1);
   } else if (op == "<" && exp1->eval(state) < exp2->eval(state)) {
-    program.setCurrentLine(lineNumber);
+    program.setCurrentLine(lineNumber - 1);
   } else if (op == ">" && exp1->eval(state) > exp2->eval(state)) {
-    program.setCurrentLine(lineNumber);
-  } else if (op == "<=" && exp1->eval(state) <= exp2->eval(state)) {
-    program.setCurrentLine(lineNumber);
-  } else if (op == ">=" && exp1->eval(state) >= exp2->eval(state)) {
-    program.setCurrentLine(lineNumber);
-  } else if (op == "<>" && exp1->eval(state) != exp2->eval(state)) {
-    program.setCurrentLine(lineNumber);
+    program.setCurrentLine(lineNumber - 1);
   }
 }
 
