@@ -31,17 +31,29 @@ LetStmt::LetStmt(TokenScanner &scanner) {
   if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" ||
       var == "IF" || var == "END") {
     std::cout << "SYNTAX ERROR" << std::endl;
+    return;
   }
   if (scanner.nextToken() != "=") {
     std::cout << "SYNTAX ERROR" << std::endl;
+    return;
   }
   try {
     exp = parseExp(scanner);
-  } catch (...) {
-    std::cout << "SYNTAX ERROR" << std::endl;
+  } catch (ErrorException &ex) {
+    if (ex.getMessage() == "DIVIDE BY ZERO") {
+      std::cout << "DIVIDE BY ZERO" << std::endl;
+      return;
+    } else if (ex.getMessage() == "VARIABLE NOT DEFINED") {
+      std::cout << "VARIABLE NOT DEFINED" << std::endl;
+      return;
+    } else {
+      std::cout << "SYNTAX ERROR" << std::endl;
+    }
+    return;
   }
   if (scanner.hasMoreTokens()) {
     std::cout << "SYNTAX ERROR" << std::endl;
+    return;
   }
 }
 
