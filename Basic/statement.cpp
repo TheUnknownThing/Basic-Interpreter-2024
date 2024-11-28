@@ -26,43 +26,26 @@ void RemStmt::execute(EvalState &state, Program &program) {
   // do nothing
 }
 
-LetStmt::LetStmt(TokenScanner &scanner) : exp(nullptr) {
+LetStmt::LetStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
   if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" ||
       var == "IF" || var == "END") {
-    std::cout << "SYNTAX ERROR" << std::endl;
-    return;
+    error("SYNTAX ERROR");
   }
   if (scanner.nextToken() != "=") {
-    std::cout << "SYNTAX ERROR" << std::endl;
-    return;
+    error("SYNTAX ERROR");
   }
   try {
     exp = parseExp(scanner);
   } catch (ErrorException &ex) {
-    if (ex.getMessage() == "DIVIDE BY ZERO") {
-      std::cout << "DIVIDE BY ZERO" << std::endl;
-      return;
-    } else if (ex.getMessage() == "VARIABLE NOT DEFINED") {
-      std::cout << "VARIABLE NOT DEFINED" << std::endl;
-      return;
-    } else {
-      std::cout << "SYNTAX ERROR" << std::endl;
-      return;
-    }
+    error(ex.getMessage());
   }
   if (scanner.hasMoreTokens()) {
-    std::cout << "SYNTAX ERROR" << std::endl;
-    return;
+    error("SYNTAX ERROR");
   }
 }
 
-LetStmt::~LetStmt() {
-  if (exp != nullptr) {
-    delete exp;
-  }
-}
-
+LetStmt::~LetStmt() { delete exp; }
 
 void LetStmt::execute(EvalState &state, Program &program) {
   state.setValue(var, exp->eval(state));
@@ -72,7 +55,7 @@ PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
   exp = parseExp(scanner);
 
   if (scanner.hasMoreTokens()) {
-    std::cout << "SYNTAX ERROR" << std::endl;
+    error("SYNTAX ERROR");
   }
 }
 
@@ -86,14 +69,14 @@ void PrintStmt::execute(EvalState &state, Program &program) {
   try {
     std::cout << exp->eval(state) << std::endl;
   } catch (ErrorException &ex) {
-    std::cout << ex.getMessage() << std::endl;
+    error(ex.getMessage());
   }
 }
 
 InputStmt::InputStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
   if (scanner.hasMoreTokens()) {
-    std::cout << "SYNTAX ERROR" << std::endl;
+    error("SYNTAX ERROR");
   }
 }
 
@@ -118,14 +101,14 @@ void InputStmt::execute(EvalState &state, Program &program) {
   try {
     state.setValue(var, value);
   } catch (...) {
-    std::cout << "INVALID NUMBER" << std::endl;
+    error("INVALID NUMBER");
   }
 }
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
   lineNumber = stringToInt(scanner.nextToken());
   if (scanner.hasMoreTokens()) {
-    std::cout << "SYNTAX ERROR" << std::endl;
+    error("SYNTAX ERROR");
   }
 }
 
@@ -137,32 +120,26 @@ void GotoStmt::execute(EvalState &state, Program &program) {
   }
 }
 
-IfStmt::IfStmt(TokenScanner &scanner) : exp1(nullptr), exp2(nullptr) {
+IfStmt::IfStmt(TokenScanner &scanner) {
   try {
-    // std::string token = scanner.nextToken();
-    // std::cout << token << std::endl;
-    // scanner.saveToken(token);
     exp1 = parseExp(scanner);
     op = scanner.nextToken();
     exp2 = parseExp(scanner);
   } catch (...) {
-    std::cout << "SYNTAX ERROR" << std::endl;
-    return;
+    error("SYNTAX ERROR");
   }
   if (scanner.nextToken() != "THEN") {
-    std::cout << "SYNTAX ERROR" << std::endl;
-    return;
+    error("SYNTAX ERROR");
   }
   lineNumber = stringToInt(scanner.nextToken());
   if (scanner.hasMoreTokens()) {
-    std::cout << "SYNTAX ERROR" << std::endl;
+    error("SYNTAX ERROR");
   }
 }
 
 void IfStmt::execute(EvalState &state, Program &program) {
   if (!program.findLine(lineNumber)) {
     error("LINE NUMBER ERROR");
-    return;
   }
   if (op == "=" && exp1->eval(state) == exp2->eval(state)) {
     program.setCurrentLine(lineNumber);
@@ -180,12 +157,8 @@ void IfStmt::execute(EvalState &state, Program &program) {
 }
 
 IfStmt::~IfStmt() {
-  if (exp1 != nullptr) {
-    delete exp1;
-  }
-  if (exp2 != nullptr) {
-    delete exp2;
-  }
+  delete exp1;
+  delete exp2;
 }
 
 EndStmt::EndStmt() {}
