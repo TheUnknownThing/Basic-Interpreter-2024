@@ -120,8 +120,8 @@ void GotoStmt::execute(EvalState &state, Program &program) {
   }
 }
 
-IfStmt::IfStmt(TokenScanner &scanner) {
-  try {
+IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
+  /*try {
     exp1 = parseExp(scanner);
     op = scanner.nextToken();
     exp2 = parseExp(scanner);
@@ -134,7 +134,44 @@ IfStmt::IfStmt(TokenScanner &scanner) {
   lineNumber = stringToInt(scanner.nextToken());
   if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
+  }*/
+  // seperate sourceLine into exp1, op, exp2, THEN, lineNumber
+  // then build tokenScanner for exp1 and exp2
+  int pos_start = scanner.getPosition();
+  int pos_op = sourceLine.find_first_of("=<>", pos_start);
+  int pos_then = sourceLine.find("THEN", pos_op);
+  int pos_end = sourceLine.find(" ", pos_then + 4);
+  std::string exp1_str = sourceLine.substr(pos_start + 1, pos_op - pos_start - 1);
+  std::string op_str = sourceLine.substr(pos_op, 1);
+  std::string exp2_str = sourceLine.substr(pos_op + 2, pos_then - pos_op - 2);
+  std::string line_str = sourceLine.substr(pos_end + 1);
+  // debug output:
+  /*std::cout << "exp1:" << exp1_str << std::endl;
+  std::cout << "op:" << op_str << std::endl;
+  std::cout << "exp2:" << exp2_str << std::endl;
+  std::cout << "line:" << line_str << std::endl;*/
+
+  TokenScanner exp1_scanner;
+  exp1_scanner.ignoreWhitespace();
+  exp1_scanner.scanNumbers();
+  exp1_scanner.ignoreComments();
+  exp1_scanner.setInput(exp1_str);
+  TokenScanner exp2_scanner;
+  exp2_scanner.ignoreWhitespace();
+  exp2_scanner.scanNumbers();
+  exp2_scanner.ignoreComments();
+  exp2_scanner.setInput(exp2_str);
+  try {
+    exp1 = parseExp(exp1_scanner);
+    op = op_str;
+    exp2 = parseExp(exp2_scanner);
+  } catch (ErrorException &ex) {
+    error(ex.getMessage());
   }
+  if (!isDecimal(line_str)) {
+    error("SYNTAX ERROR");
+  }
+  lineNumber = stringToInt(line_str);
 }
 
 void IfStmt::execute(EvalState &state, Program &program) {

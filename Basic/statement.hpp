@@ -129,7 +129,7 @@ private:
 
 class IfStmt : public Statement {
 public:
-    IfStmt(TokenScanner &scanner);
+    IfStmt(TokenScanner &scanner, std::string sourceLine);
     ~IfStmt();
     void execute(EvalState &state, Program &program) override;
 private:

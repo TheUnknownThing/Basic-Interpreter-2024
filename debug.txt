@@ -45,7 +45,22 @@ Your output:
 SYNTAX ERROR
 SYNTAX ERROR
 
-Trace "Test/trace04.txt" ... Pass
+Trace "Test/trace04.txt" ... Fail
+Trace file: 
+10 REM test line 1
+LET LET = 1
+QUIT
+
+
+Demo output: 
+SYNTAX ERROR
+SYNTAX ERROR
+
+Your output: 
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+
 Trace "Test/trace05.txt" ... Pass
 Trace "Test/trace06.txt" ... Pass
 Trace "Test/trace07.txt" ... Fail
@@ -82,61 +97,9 @@ Your output:
 SYNTAX ERROR
 SYNTAX ERROR
 
-Trace "Test/trace09.txt" ... Fail
-Trace file: 
-10 REM test line 1
-20 REM test line 2
-10
-LIST
-QUIT
-
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Trace "Test/trace10.txt" ... Fail
-Trace file: 
-10 REM test line 1
-20 REM test line 2
-10
-LIST
-10 REM test line 1 - modified
-LIST
-QUIT
-
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Trace "Test/trace11.txt" ... Fail
-Trace file: 
-10 REM test line 1
-20 REM test line 2
-30
-LIST
-QUIT
-
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
+Trace "Test/trace09.txt" ... Pass
+Trace "Test/trace10.txt" ... Pass
+Trace "Test/trace11.txt" ... Pass
 Trace "Test/trace12.txt" ... Fail
 Trace file: 
 10 REM test line 1
@@ -174,31 +137,8 @@ Your output:
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
-Trace "Test/trace13.txt" ... Fail
-Trace file: 
-10 REM test line 1
-20 REM test line 2
-30 REM test line 3
-20
-CLEAR
-LIST
-QUIT
-
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
+Trace "Test/trace13.txt" ... Pass
 Trace "Test/trace14.txt" ... Fail
 Trace file: 
 CLEAR
@@ -799,15 +739,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-3
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace56.txt" ... Fail
 Trace file: 
 INPUT x
@@ -817,17 +749,7 @@ INPUT y
 PRINT x + y
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
- ? SYNTAX ERROR
-7
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace57.txt" ... Fail
 Trace file: 
 INPUT x
@@ -836,16 +758,7 @@ LET x = x + x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-20
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace58.txt" ... Fail
 Trace file: 
 INPUT x
@@ -859,22 +772,7 @@ PRINT x
 PRINT y
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
- ? SYNTAX ERROR
-20
-10
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace59.txt" ... Fail
 Trace file: 
 INPUT x
@@ -882,16 +780,7 @@ INPUT x
 PRINT 0 - x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-20
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace60.txt" ... Fail
 Trace file: 
 INPUT x
@@ -909,17 +798,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-SYNTAX ERROR
-1
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace62.txt" ... Fail
 Trace file: 
 INPUT x
@@ -928,17 +807,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-SYNTAX ERROR
-3
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace63.txt" ... Fail
 Trace file: 
 INPUT x
@@ -947,17 +816,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-SYNTAX ERROR
-0
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace64.txt" ... Fail
 Trace file: 
 INPUT x
@@ -965,15 +824,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-0
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace65.txt" ... Fail
 Trace file: 
 INPUT x
@@ -983,17 +834,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
- ? SYNTAX ERROR
-4
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace66.txt" ... Fail
 Trace file: 
 LET x = 100
@@ -1002,16 +843,7 @@ INPUT x
 PRINT x
 QUIT
 
-Demo output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-
-Your output: 
- ? SYNTAX ERROR
-200
-SYNTAX ERROR
-
+Error occurred while running your program
 Trace "Test/trace67.txt" ... Fail
 Trace file: 
 LET x = 3
@@ -1154,24 +986,28 @@ SYNTAX ERROR
 SYNTAX ERROR
 
 Trace "Test/trace75.txt" ... Pass
-Trace "Test/trace76.txt" ... Fail
+Trace "Test/trace76.txt" ... Pass
+Trace "Test/trace77.txt" ... Fail
 Trace file: 
 10 INPUT x
-20 PRINT x
+20 INPUT x
+30 PRINT x
+15 PRINT x
 RUN
-3
+111
+222
 QUIT
 
 Demo output: 
+SYNTAX ERROR
+SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 
 Your output: 
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
 
-Trace "Test/trace77.txt" ... Pass
 Trace "Test/trace78.txt" ... Fail
 Trace file: 
 10 LET x = 1
@@ -1309,9 +1145,6 @@ Your output:
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
 Trace "Test/trace90.txt" ... Fail
 Trace file: 
@@ -1353,8 +1186,6 @@ SYNTAX ERROR
 Your output: 
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
 Trace "Test/trace91.txt" ... Fail
 Trace file: 
@@ -1384,8 +1215,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 
 Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1449,14 +1278,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
 Trace "Test/trace93.txt" ... Fail
 Trace file: 
@@ -1477,7 +1298,23 @@ RUN
 0
 QUIT
 
-Memory leak
+Demo output: 
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+
+Your output: 
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+SYNTAX ERROR
+
 Trace "Test/trace94.txt" ... Fail
 Trace file: 
 10 REM is prime
@@ -1520,10 +1357,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
 Trace "Test/trace95.txt" ... Fail
 Trace file: 
@@ -1557,8 +1390,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 
 Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1609,10 +1440,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
 Trace "Test/trace97.txt" ... Fail
 Trace file: 
@@ -1645,13 +1472,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 
 Your output: 
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
@@ -1732,9 +1552,6 @@ SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
 SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
-SYNTAX ERROR
 
-7 / 100 trace(s) passed.
-Final Score: 0.5
+10 / 100 trace(s) passed.
+Final Score: 1.0

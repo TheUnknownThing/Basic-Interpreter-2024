@@ -113,7 +113,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
         } else if (token == "GOTO") {
           stmt = new GotoStmt(scanner);
         } else if (token == "IF") {
-          stmt = new IfStmt(scanner);
+          stmt = new IfStmt(scanner, line);
         } else if (token == "END") {
           stmt = new EndStmt();
         } else if (token == "") {
