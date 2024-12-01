@@ -27,27 +27,27 @@ void RemStmt::execute(EvalState &state, Program &program) {
 }
 
 LetStmt::LetStmt(TokenScanner &scanner) {
-  var = scanner.nextToken();
-  std::vector<std::string> keywords = {
-      "LET", "PRINT", "INPUT", "GOTO", "IF",   "END", "REM",
-      "RUN", "LIST",  "CLEAR", "QUIT", "HELP", "THEN"};
-  for (const std::string &keyword : keywords) {
-    if (var.find(keyword) != std::string::npos) {
+  try {
+    var = scanner.nextToken();
+    std::vector<std::string> keywords = {
+        "LET", "PRINT", "INPUT", "GOTO", "IF",   "END", "REM",
+        "RUN", "LIST",  "CLEAR", "QUIT", "HELP", "THEN"};
+    for (const std::string &keyword : keywords) {
+      if (var.find(keyword) != std::string::npos) {
+        error("SYNTAX ERROR");
+      }
+    }
+    if (var.empty() || var.find('_') != std::string::npos) {
       error("SYNTAX ERROR");
     }
-  }
-  if (var.empty() || var.find('_') != std::string::npos) {
-    error("SYNTAX ERROR");
-  }
-  if (scanner.nextToken() != "=") {
-    error("SYNTAX ERROR");
-  }
-  try {
+    if (scanner.nextToken() != "=") {
+      error("SYNTAX ERROR");
+    }
     exp = parseExp(scanner);
+    if (scanner.hasMoreTokens()) {
+      error("SYNTAX ERROR");
+    }
   } catch (ErrorException &ex) {
-    error("SYNTAX ERROR");
-  }
-  if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
   }
 }
@@ -58,18 +58,17 @@ void LetStmt::execute(EvalState &state, Program &program) {
   try {
     state.setValue(var, exp->eval(state));
   } catch (ErrorException &ex) {
-    error("SYNTAX ERROR");
+    error(ex.getMessage());
   }
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
   try {
     exp = parseExp(scanner);
+    if (scanner.hasMoreTokens()) {
+      error("SYNTAX ERROR");
+    }
   } catch (ErrorException &ex) {
-    error("SYNTAX ERROR");
-  }
-
-  if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
   }
 }
@@ -84,13 +83,17 @@ void PrintStmt::execute(EvalState &state, Program &program) {
   try {
     std::cout << exp->eval(state) << std::endl;
   } catch (ErrorException &ex) {
-    error("SYNTAX ERROR");
+    error(ex.getMessage());
   }
 }
 
 InputStmt::InputStmt(TokenScanner &scanner) {
-  var = scanner.nextToken();
-  if (scanner.hasMoreTokens()) {
+  try {
+    var = scanner.nextToken();
+    if (scanner.hasMoreTokens()) {
+      error("SYNTAX ERROR");
+    }
+  } catch (ErrorException &ex) {
     error("SYNTAX ERROR");
   }
 }
@@ -116,17 +119,17 @@ void InputStmt::execute(EvalState &state, Program &program) {
   try {
     state.setValue(var, value);
   } catch (...) {
-    error("SYNTAX ERROR");
+    error("INVALID NUMBER");
   }
 }
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
   try {
     lineNumber = stringToInt(scanner.nextToken());
-  } catch (...) {
-    error("SYNTAX ERROR");
-  }
-  if (scanner.hasMoreTokens()) {
+    if (scanner.hasMoreTokens()) {
+      error("SYNTAX ERROR");
+    }
+  } catch (ErrorException &ex) {
     error("SYNTAX ERROR");
   }
 }
@@ -140,42 +143,41 @@ void GotoStmt::execute(EvalState &state, Program &program) {
 }
 
 IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
-  int pos_start = scanner.getPosition();
-  int pos_op = sourceLine.find_first_of("=<>", pos_start);
-  int pos_then = sourceLine.find("THEN", pos_op);
-  int pos_end = sourceLine.find(" ", pos_then + 4);
-  std::string exp1_str =
-      sourceLine.substr(pos_start + 1, pos_op - pos_start - 1);
-  std::string op_str = sourceLine.substr(pos_op, 1);
-  std::string exp2_str = sourceLine.substr(pos_op + 2, pos_then - pos_op - 2);
-  std::string line_str = sourceLine.substr(pos_end + 1);
-
-  if (exp1_str.empty() || op_str.empty() || exp2_str.empty() ||
-      line_str.empty()) {
-    error("SYNTAX ERROR");
-  }
-
-  TokenScanner exp1_scanner;
-  exp1_scanner.ignoreWhitespace();
-  exp1_scanner.scanNumbers();
-  exp1_scanner.ignoreComments();
-  exp1_scanner.setInput(exp1_str);
-  TokenScanner exp2_scanner;
-  exp2_scanner.ignoreWhitespace();
-  exp2_scanner.scanNumbers();
-  exp2_scanner.ignoreComments();
-  exp2_scanner.setInput(exp2_str);
   try {
+    int pos_start = scanner.getPosition();
+    int pos_op = sourceLine.find_first_of("=<>", pos_start);
+    int pos_then = sourceLine.find("THEN", pos_op);
+    int pos_end = sourceLine.find(" ", pos_then + 4);
+    std::string exp1_str =
+        sourceLine.substr(pos_start + 1, pos_op - pos_start - 1);
+    std::string op_str = sourceLine.substr(pos_op, 1);
+    std::string exp2_str = sourceLine.substr(pos_op + 2, pos_then - pos_op - 2);
+    std::string line_str = sourceLine.substr(pos_end + 1);
+    if (exp1_str.empty() || op_str.empty() || exp2_str.empty() ||
+        line_str.empty()) {
+      error("SYNTAX ERROR");
+    }
+
+    TokenScanner exp1_scanner;
+    exp1_scanner.ignoreWhitespace();
+    exp1_scanner.scanNumbers();
+    exp1_scanner.ignoreComments();
+    exp1_scanner.setInput(exp1_str);
+    TokenScanner exp2_scanner;
+    exp2_scanner.ignoreWhitespace();
+    exp2_scanner.scanNumbers();
+    exp2_scanner.ignoreComments();
+    exp2_scanner.setInput(exp2_str);
     exp1 = parseExp(exp1_scanner);
     op = op_str;
     exp2 = parseExp(exp2_scanner);
+    if (!isDecimal(line_str)) {
+      error("SYNTAX ERROR");
+    }
+    lineNumber = stringToInt(line_str);
   } catch (ErrorException &ex) {
     error("SYNTAX ERROR");
   }
-  if (!isDecimal(line_str)) {
-    error("SYNTAX ERROR");
-  }
-  lineNumber = stringToInt(line_str);
 }
 
 void IfStmt::execute(EvalState &state, Program &program) {
@@ -191,7 +193,7 @@ void IfStmt::execute(EvalState &state, Program &program) {
       program.setCurrentLine(lineNumber - 1);
     }
   } catch (ErrorException &ex) {
-    error("SYNTAX ERROR");
+    error(ex.getMessage());
   }
 }
 
