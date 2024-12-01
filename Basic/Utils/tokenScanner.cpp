@@ -100,9 +100,36 @@ std::string TokenScanner::nextToken() {
             isp->unget();
             return scanString();
         }
-        if (isdigit(ch) && scanNumbersFlag) {
-            isp->unget();
-            return scanNumber();
+        if (isdigit(ch)) {
+            std::string token;
+            token += ch;
+            while (true) {
+                int next_ch = isp->peek();
+                if (isalnum(next_ch) || wordChars.find(next_ch) != std::string::npos) {
+                    token += isp->get();
+                } else {
+                    break;
+                }
+            }
+            bool hasLetter = false;
+            for (char c : token) {
+                if (isalpha(c) || wordChars.find(c) != std::string::npos) {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter) {
+                return token;
+            } else if (scanNumbersFlag) {
+                // Put back the extra characters
+                for (int i = token.length() - 1; i > 0; i--) {
+                    isp->unget();
+                }
+                isp->unget();
+                return scanNumber();
+            } else {
+                return token;
+            }
         }
         if (isWordCharacter(ch)) {
             isp->unget();
@@ -183,6 +210,11 @@ TokenType TokenScanner::getTokenType(std::string token) const {
     char ch = token[0];
     if (isspace(ch)) return SEPARATOR;
     if (ch == '"' || (ch == '\'' && token.length() > 1)) return STRING;
+    for (char c : token) {
+        if (isalpha(c) || wordChars.find(c) != std::string::npos) {
+            return WORD;
+        }
+    }
     if (isdigit(ch)) return NUMBER;
     if (isWordCharacter(ch)) return WORD;
     return OPERATOR;

@@ -8,6 +8,7 @@
 #include "Utils/strlib.hpp"
 #include "Utils/tokenScanner.hpp"
 #include "exp.hpp"
+#include "statement.hpp"
 #include "parser.hpp"
 #include "program.hpp"
 #include <cctype>
@@ -49,6 +50,8 @@ int main() {
  * when the user enters a program line (which begins with a number)
  * or one of the BASIC commands, such as LIST or RUN.
  */
+
+bool isValidNumber(const std::string &input);
 
 void processLine(std::string line, Program &program, EvalState &state) {
   // Support control sequence: LIST, RUN, CLEAR, QUIT, HELP
@@ -96,42 +99,48 @@ void processLine(std::string line, Program &program, EvalState &state) {
     scanner.setInput(line);
     std::string token = scanner.nextToken();
     if (scanner.getTokenType(token) == NUMBER) {
-      int lineNumber = stringToInteger(token);
-      scanner.scanStrings();
-      token = scanner.nextToken();
-      Statement *stmt = nullptr;
-      scanner.scanNumbers();
-      try {
-        if (token == "REM") {
-          stmt = new RemStmt(scanner);
-        } else if (token == "LET") {
-          stmt = new LetStmt(scanner);
-        } else if (token == "PRINT") {
-          stmt = new PrintStmt(scanner);
-        } else if (token == "INPUT") {
-          stmt = new InputStmt(scanner);
-        } else if (token == "GOTO") {
-          stmt = new GotoStmt(scanner);
-        } else if (token == "IF") {
-          stmt = new IfStmt(scanner, line);
-        } else if (token == "END") {
-          stmt = new EndStmt();
-        } else if (token == "") {
-          // delete the line
-          program.removeSourceLine(lineNumber);
-        } else {
-          error("SYNTAX ERROR");
+      int lineNumber;
+      if (isValidNumber(token)) {
+        lineNumber = std::stoi(token);
+        scanner.scanStrings();
+        token = scanner.nextToken();
+        Statement *stmt = nullptr;
+        scanner.scanNumbers();
+        try {
+          if (token == "REM") {
+            stmt = new RemStmt(scanner);
+          } else if (token == "LET") {
+            stmt = new LetStmt(scanner);
+          } else if (token == "PRINT") {
+            stmt = new PrintStmt(scanner);
+          } else if (token == "INPUT") {
+            stmt = new InputStmt(scanner);
+          } else if (token == "GOTO") {
+            stmt = new GotoStmt(scanner);
+          } else if (token == "IF") {
+            stmt = new IfStmt(scanner, line);
+          } else if (token == "END") {
+            stmt = new EndStmt();
+          } else if (token == "") {
+            // delete the line
+            program.removeSourceLine(lineNumber);
+          } else {
+            error("SYNTAX ERROR");
+          }
+          if (stmt != nullptr) {
+            program.addSourceLine(lineNumber, line);
+            program.setParsedStatement(lineNumber, stmt);
+          }
+        } catch (ErrorException &ex) {
+          std::cout << ex.getMessage() << std::endl;
+          if (stmt != nullptr) {
+            delete stmt;
+          }
         }
-        if (stmt != nullptr) {
-          program.addSourceLine(lineNumber, line);
-          program.setParsedStatement(lineNumber, stmt);
-        }
-      } catch (ErrorException &ex) {
-        std::cout << ex.getMessage() << std::endl;
-        if (stmt != nullptr) {
-          delete stmt;
-        }
+      } else {
+        error("SYNTAX ERROR");
       }
+
     } else if (scanner.getTokenType(token) == WORD) {
       Statement *stmt = nullptr;
       try {
@@ -160,4 +169,16 @@ void processLine(std::string line, Program &program, EvalState &state) {
       std::cout << "SYNTAX ERROR" << std::endl;
     }
   }
+}
+
+bool isValidNumber(const std::string &input) {
+  if (input.empty())
+    return false;
+
+  for (size_t i = 0; i < input.length(); ++i) {
+    if (!isdigit(input[i]))
+      return false;
+  }
+
+  return true;
 }
