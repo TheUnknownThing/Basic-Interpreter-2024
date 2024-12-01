@@ -58,7 +58,7 @@ void LetStmt::execute(EvalState &state, Program &program) {
   try {
     state.setValue(var, exp->eval(state));
   } catch (ErrorException &ex) {
-    error(ex.getMessage());
+    error("SYNTAX ERROR");
   }
 }
 
@@ -84,7 +84,7 @@ void PrintStmt::execute(EvalState &state, Program &program) {
   try {
     std::cout << exp->eval(state) << std::endl;
   } catch (ErrorException &ex) {
-    error(ex.getMessage());
+    error("SYNTAX ERROR");
   }
 }
 
@@ -116,12 +116,16 @@ void InputStmt::execute(EvalState &state, Program &program) {
   try {
     state.setValue(var, value);
   } catch (...) {
-    error("INVALID NUMBER");
+    error("SYNTAX ERROR");
   }
 }
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
-  lineNumber = stringToInt(scanner.nextToken());
+  try {
+    lineNumber = stringToInt(scanner.nextToken());
+  } catch (...) {
+    error("SYNTAX ERROR");
+  }
   if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
   }
@@ -136,22 +140,6 @@ void GotoStmt::execute(EvalState &state, Program &program) {
 }
 
 IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
-  /*try {
-    exp1 = parseExp(scanner);
-    op = scanner.nextToken();
-    exp2 = parseExp(scanner);
-  } catch (...) {
-    error("SYNTAX ERROR");
-  }
-  if (scanner.nextToken() != "THEN") {
-    error("SYNTAX ERROR");
-  }
-  lineNumber = stringToInt(scanner.nextToken());
-  if (scanner.hasMoreTokens()) {
-    error("SYNTAX ERROR");
-  }*/
-  // seperate sourceLine into exp1, op, exp2, THEN, lineNumber
-  // then build tokenScanner for exp1 and exp2
   int pos_start = scanner.getPosition();
   int pos_op = sourceLine.find_first_of("=<>", pos_start);
   int pos_then = sourceLine.find("THEN", pos_op);
@@ -161,11 +149,7 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
   std::string op_str = sourceLine.substr(pos_op, 1);
   std::string exp2_str = sourceLine.substr(pos_op + 2, pos_then - pos_op - 2);
   std::string line_str = sourceLine.substr(pos_end + 1);
-  // debug output:
-  /*std::cout << "exp1:" << exp1_str << std::endl;
-  std::cout << "op:" << op_str << std::endl;
-  std::cout << "exp2:" << exp2_str << std::endl;
-  std::cout << "line:" << line_str << std::endl;*/
+
   if (exp1_str.empty() || op_str.empty() || exp2_str.empty() ||
       line_str.empty()) {
     error("SYNTAX ERROR");
@@ -207,7 +191,7 @@ void IfStmt::execute(EvalState &state, Program &program) {
       program.setCurrentLine(lineNumber - 1);
     }
   } catch (ErrorException &ex) {
-    error(ex.getMessage());
+    error("SYNTAX ERROR");
   }
 }
 

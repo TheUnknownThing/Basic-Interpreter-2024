@@ -6,7 +6,6 @@
 
 #include "parser.hpp"
 
-
 /*
  * Implementation notes: parseExp
  * ------------------------------
@@ -16,7 +15,7 @@
 Expression *parseExp(TokenScanner &scanner) {
     Expression *exp = readE(scanner, 0);
     if (scanner.hasMoreTokens()) {
-        error("parseExp: Found extra token: " + scanner.nextToken());
+        error("SYNTAX ERROR");
     }
     return exp;
 }
@@ -71,10 +70,10 @@ Expression *readT(TokenScanner &scanner) {
         scanner.saveToken(nextToken);
         return new CompoundExp(token, new ConstantExp(0), readE(scanner));
     }
-    if (token != "(") error("Illegal term in expression");
+    if (token != "(") error("SYNTAX ERROR");
     Expression *exp = readE(scanner);
     if (scanner.nextToken() != ")") {
-        error("Unbalanced parentheses in expression");
+        error("SYNTAX ERROR");
     }
     return exp;
 }
