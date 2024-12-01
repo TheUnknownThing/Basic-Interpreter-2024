@@ -155,6 +155,10 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
     int pos_op = sourceLine.find_first_of("=<>", pos_start);
     int pos_then = sourceLine.find("THEN", pos_op);
     int pos_end = sourceLine.find(" ", pos_then + 4);
+    // check position is valid
+    if (pos_start == -1 || pos_op == -1 || pos_then == -1 || pos_end == -1) {
+      error("SYNTAX ERROR");
+    }
     std::string exp1_str =
         sourceLine.substr(pos_start + 1, pos_op - pos_start - 1);
     std::string op_str = sourceLine.substr(pos_op, 1);
