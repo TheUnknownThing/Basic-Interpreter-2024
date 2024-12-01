@@ -187,6 +187,9 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
     }
     lineNumber = stringToInt(line_str);
   } catch (ErrorException &ex) {
+    if (exp1 != nullptr) {
+      delete exp1;
+    }
     error("SYNTAX ERROR");
   }
 }

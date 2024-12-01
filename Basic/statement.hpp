@@ -133,7 +133,7 @@ public:
     ~IfStmt();
     void execute(EvalState &state, Program &program) override;
 private:
-    Expression *exp1, *exp2;
+    Expression *exp1 = nullptr, *exp2 = nullptr;
     std::string op;
     int lineNumber;
 };
