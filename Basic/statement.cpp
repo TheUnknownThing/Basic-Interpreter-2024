@@ -28,8 +28,15 @@ void RemStmt::execute(EvalState &state, Program &program) {
 
 LetStmt::LetStmt(TokenScanner &scanner) {
   var = scanner.nextToken();
-  if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" ||
-      var == "IF" || var == "END") {
+  std::vector<std::string> keywords = {
+      "LET", "PRINT", "INPUT", "GOTO", "IF",   "END", "REM",
+      "RUN", "LIST",  "CLEAR", "QUIT", "HELP", "THEN"};
+  for (const std::string &keyword : keywords) {
+    if (var.find(keyword) != std::string::npos) {
+      error("SYNTAX ERROR");
+    }
+  }
+  if (var.empty() || var.find('_') != std::string::npos) {
     error("SYNTAX ERROR");
   }
   if (scanner.nextToken() != "=") {
@@ -38,7 +45,7 @@ LetStmt::LetStmt(TokenScanner &scanner) {
   try {
     exp = parseExp(scanner);
   } catch (ErrorException &ex) {
-    error(ex.getMessage());
+    error("SYNTAX ERROR");
   }
   if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
@@ -52,7 +59,11 @@ void LetStmt::execute(EvalState &state, Program &program) {
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
-  exp = parseExp(scanner);
+  try {
+    exp = parseExp(scanner);
+  } catch (ErrorException &ex) {
+    error("SYNTAX ERROR");
+  }
 
   if (scanner.hasMoreTokens()) {
     error("SYNTAX ERROR");
@@ -141,7 +152,8 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
   int pos_op = sourceLine.find_first_of("=<>", pos_start);
   int pos_then = sourceLine.find("THEN", pos_op);
   int pos_end = sourceLine.find(" ", pos_then + 4);
-  std::string exp1_str = sourceLine.substr(pos_start + 1, pos_op - pos_start - 1);
+  std::string exp1_str =
+      sourceLine.substr(pos_start + 1, pos_op - pos_start - 1);
   std::string op_str = sourceLine.substr(pos_op, 1);
   std::string exp2_str = sourceLine.substr(pos_op + 2, pos_then - pos_op - 2);
   std::string line_str = sourceLine.substr(pos_end + 1);
@@ -150,7 +162,8 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
   std::cout << "op:" << op_str << std::endl;
   std::cout << "exp2:" << exp2_str << std::endl;
   std::cout << "line:" << line_str << std::endl;*/
-  if (exp1_str.empty() || op_str.empty() || exp2_str.empty() || line_str.empty()) {
+  if (exp1_str.empty() || op_str.empty() || exp2_str.empty() ||
+      line_str.empty()) {
     error("SYNTAX ERROR");
   }
 
@@ -169,7 +182,7 @@ IfStmt::IfStmt(TokenScanner &scanner, std::string sourceLine) {
     op = op_str;
     exp2 = parseExp(exp2_scanner);
   } catch (ErrorException &ex) {
-    error(ex.getMessage());
+    error("SYNTAX ERROR");
   }
   if (!isDecimal(line_str)) {
     error("SYNTAX ERROR");
