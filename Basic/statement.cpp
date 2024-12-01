@@ -55,7 +55,11 @@ LetStmt::LetStmt(TokenScanner &scanner) {
 LetStmt::~LetStmt() { delete exp; }
 
 void LetStmt::execute(EvalState &state, Program &program) {
-  state.setValue(var, exp->eval(state));
+  try {
+    state.setValue(var, exp->eval(state));
+  } catch (ErrorException &ex) {
+    error(ex.getMessage());
+  }
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
@@ -194,12 +198,16 @@ void IfStmt::execute(EvalState &state, Program &program) {
   if (!program.findLine(lineNumber)) {
     error("LINE NUMBER ERROR");
   }
-  if (op == "=" && exp1->eval(state) == exp2->eval(state)) {
-    program.setCurrentLine(lineNumber - 1);
-  } else if (op == "<" && exp1->eval(state) < exp2->eval(state)) {
-    program.setCurrentLine(lineNumber - 1);
-  } else if (op == ">" && exp1->eval(state) > exp2->eval(state)) {
-    program.setCurrentLine(lineNumber - 1);
+  try {
+    if (op == "=" && exp1->eval(state) == exp2->eval(state)) {
+      program.setCurrentLine(lineNumber - 1);
+    } else if (op == "<" && exp1->eval(state) < exp2->eval(state)) {
+      program.setCurrentLine(lineNumber - 1);
+    } else if (op == ">" && exp1->eval(state) > exp2->eval(state)) {
+      program.setCurrentLine(lineNumber - 1);
+    }
+  } catch (ErrorException &ex) {
+    error(ex.getMessage());
   }
 }
 
