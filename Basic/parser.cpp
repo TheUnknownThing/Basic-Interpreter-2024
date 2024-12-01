@@ -12,16 +12,16 @@
  * This code just reads an expression and then checks for extra tokens.
  */
 
-Expression *parseExp(TokenScanner &scanner) {
+Expression *parseExp(TokenScanner &scanner, bool allowAssignment) {
     try {
-        Expression *exp = readE(scanner, 0);
+        Expression *exp = readE(scanner, 0, allowAssignment);
         if (scanner.hasMoreTokens()) {
-            error("parseExp: Found extra token: " + scanner.nextToken());
+            error("SYNTAX ERROR");
         }
         return exp;
     } catch (ErrorException &ex) {
         error("SYNTAX ERROR");
-        return nullptr; // This line will never be reached, but it's here to satisfy the compiler.
+        return nullptr;
     }
 }
 
@@ -36,7 +36,7 @@ Expression *parseExp(TokenScanner &scanner) {
  * readE calls itself recursively to read in that subexpression as a unit.
  */
 
-Expression *readE(TokenScanner &scanner, int prec) {
+Expression *readE(TokenScanner &scanner, int prec, bool allowAssignment) {
     try {
         Expression *exp = readT(scanner);
         std::string token;
@@ -44,19 +44,17 @@ Expression *readE(TokenScanner &scanner, int prec) {
             token = scanner.nextToken();
             int newPrec = precedence(token);
             if (newPrec <= prec) break;
-            Expression *rhs = readE(scanner, newPrec);
-            if (token == "+" || token == "-") {
-                if (rhs->toString().find("-") != std::string::npos) {
-                    error("SYNTAX ERROR");
-                }
+            if (token == "=" && !allowAssignment) {
+                error("SYNTAX ERROR");
             }
+            Expression *rhs = readE(scanner, newPrec, allowAssignment);
             exp = new CompoundExp(token, exp, rhs);
         }
         scanner.saveToken(token);
         return exp;
     } catch (ErrorException &ex) {
         error("SYNTAX ERROR");
-        return nullptr; // This line will never be reached, but it's here to satisfy the compiler.
+        return nullptr;
     }
 }
 

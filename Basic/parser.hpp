@@ -25,7 +25,7 @@
  * whitespace and to scan numbers.
  */
 
-Expression *parseExp(TokenScanner &scanner);
+Expression *parseExp(TokenScanner &scanner, bool allowAssignment = true);
 
 /*
  * Function: readE
@@ -36,7 +36,7 @@ Expression *parseExp(TokenScanner &scanner);
  * defaults to 0, which means that the function reads the entire expression.
  */
 
-Expression *readE(TokenScanner &scanner, int prec = 0);
+Expression *readE(TokenScanner &scanner, int prec = 0, bool allowAssignment = true);
 
 /*
  * Function: readT

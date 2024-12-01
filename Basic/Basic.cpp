@@ -120,7 +120,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
           } else if (token == "IF") {
             stmt = new IfStmt(scanner, line);
           } else if (token == "END") {
-            stmt = new EndStmt();
+            stmt = new EndStmt(scanner);
           } else if (token == "") {
             // delete the line
             program.removeSourceLine(lineNumber);

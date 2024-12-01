@@ -9,6 +9,7 @@
 
 #include "statement.hpp"
 #include "Utils/error.hpp"
+#include "Utils/tokenScanner.hpp"
 
 /* Implementation of the Statement class */
 
@@ -63,14 +64,14 @@ void LetStmt::execute(EvalState &state, Program &program) {
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
-  try {
-    exp = parseExp(scanner);
-    if (scanner.hasMoreTokens()) {
-      error("SYNTAX ERROR");
+    try {
+        exp = parseExp(scanner, false);
+        if (scanner.hasMoreTokens()) {
+            error("SYNTAX ERROR");
+        }
+    } catch (ErrorException &ex) {
+        error("SYNTAX ERROR");
     }
-  } catch (ErrorException &ex) {
-    error("SYNTAX ERROR");
-  }
 }
 
 PrintStmt::~PrintStmt() {
@@ -125,6 +126,9 @@ void InputStmt::execute(EvalState &state, Program &program) {
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
   try {
+    if (!isDecimal(scanner.nextToken())) {
+      error("SYNTAX ERROR");
+    }
     lineNumber = stringToInt(scanner.nextToken());
     if (scanner.hasMoreTokens()) {
       error("SYNTAX ERROR");
@@ -202,7 +206,11 @@ IfStmt::~IfStmt() {
   delete exp2;
 }
 
-EndStmt::EndStmt() {}
+EndStmt::EndStmt(TokenScanner &scanner) {
+  if (scanner.hasMoreTokens()) {
+    error("SYNTAX ERROR");
+  }
+}
 
 void EndStmt::execute(EvalState &state, Program &program) {
   program.setCurrentLine(-1);

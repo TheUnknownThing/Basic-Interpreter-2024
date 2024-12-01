@@ -140,7 +140,7 @@ private:
 
 class EndStmt : public Statement {
 public:
-    EndStmt();
+    EndStmt(TokenScanner &scanner);
     void execute(EvalState &state, Program &program) override;
 };
 
