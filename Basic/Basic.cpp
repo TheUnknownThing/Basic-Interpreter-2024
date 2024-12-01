@@ -63,11 +63,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
     state.Clear();
     program.clear();
   } else if (line == "HELP") {
-    std::cout << "This is a simple BASIC interpreter." << std::endl;
-    std::cout << "  LIST: List all the lines of the program." << std::endl;
-    std::cout << "  RUN: Run the program." << std::endl;
-    std::cout << "  CLEAR: Clear the program." << std::endl;
-    std::cout << "  QUIT: Quit the interpreter." << std::endl;
+    std::cout << "Yet another basic interpreter" << std::endl;
   } else if (line == "LIST") {
     program.listAllLines();
   } else if (line == "RUN") {
@@ -84,6 +80,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
         stmt->execute(state, program);
       } catch (ErrorException &ex) {
         std::cout << ex.getMessage() << std::endl;
+        break;
       }
       lineNumber = program.nextLine();
       program.setCurrentLine(lineNumber);
