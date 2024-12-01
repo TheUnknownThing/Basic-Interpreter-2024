@@ -126,10 +126,11 @@ void InputStmt::execute(EvalState &state, Program &program) {
 
 GotoStmt::GotoStmt(TokenScanner &scanner) {
   try {
-    if (!isDecimal(scanner.nextToken())) {
+    std::string token = scanner.nextToken();
+    if (!isDecimal(token)) {
       error("SYNTAX ERROR");
     }
-    lineNumber = stringToInt(scanner.nextToken());
+    lineNumber = stringToInt(token);
     if (scanner.hasMoreTokens()) {
       error("SYNTAX ERROR");
     }
