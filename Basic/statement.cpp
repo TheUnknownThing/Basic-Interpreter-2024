@@ -64,14 +64,14 @@ void LetStmt::execute(EvalState &state, Program &program) {
 }
 
 PrintStmt::PrintStmt(TokenScanner &scanner) : exp(nullptr) {
-    try {
-        exp = parseExp(scanner, false);
-        if (scanner.hasMoreTokens()) {
-            error("SYNTAX ERROR");
-        }
-    } catch (ErrorException &ex) {
-        error("SYNTAX ERROR");
+  try {
+    exp = parseExp(scanner, false);
+    if (scanner.hasMoreTokens()) {
+      error("SYNTAX ERROR");
     }
+  } catch (ErrorException &ex) {
+    error("SYNTAX ERROR");
+  }
 }
 
 PrintStmt::~PrintStmt() {
@@ -82,7 +82,9 @@ PrintStmt::~PrintStmt() {
 
 void PrintStmt::execute(EvalState &state, Program &program) {
   try {
-    std::cout << exp->eval(state) << std::endl;
+    if (exp != nullptr) {
+      std::cout << exp->eval(state) << std::endl;
+    }
   } catch (ErrorException &ex) {
     error(ex.getMessage());
   }

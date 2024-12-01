@@ -8,9 +8,9 @@
 #include "Utils/strlib.hpp"
 #include "Utils/tokenScanner.hpp"
 #include "exp.hpp"
-#include "statement.hpp"
 #include "parser.hpp"
 #include "program.hpp"
+#include "statement.hpp"
 #include <cctype>
 #include <iostream>
 #include <string>
@@ -72,25 +72,23 @@ void processLine(std::string line, Program &program, EvalState &state) {
     program.listAllLines();
   } else if (line == "RUN") {
     int firstLine = program.getFirstLineNumber();
-    if (firstLine == -1) {
-      std::cout << "SYNTAX ERROR" << std::endl;
-    } else {
-      int lineNumber = firstLine;
-      program.setCurrentLine(lineNumber);
-      while (lineNumber != -1) {
-        Statement *stmt = program.getParsedStatement(lineNumber);
-        if (stmt == nullptr) {
-          std::cout << "SYNTAX ERROR" << std::endl;
-        }
-        try {
-          stmt->execute(state, program);
-        } catch (ErrorException &ex) {
-          std::cout << ex.getMessage() << std::endl;
-        }
-        lineNumber = program.nextLine();
-        program.setCurrentLine(lineNumber);
+
+    int lineNumber = firstLine;
+    program.setCurrentLine(lineNumber);
+    while (lineNumber != -1) {
+      Statement *stmt = program.getParsedStatement(lineNumber);
+      if (stmt == nullptr) {
+        std::cout << "SYNTAX ERROR" << std::endl;
       }
+      try {
+        stmt->execute(state, program);
+      } catch (ErrorException &ex) {
+        std::cout << ex.getMessage() << std::endl;
+      }
+      lineNumber = program.nextLine();
+      program.setCurrentLine(lineNumber);
     }
+
   } else {
     TokenScanner scanner;
     scanner.ignoreWhitespace();
