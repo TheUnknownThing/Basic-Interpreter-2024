@@ -14,7 +14,7 @@
  */
 
 Expression *parseExp(TokenScanner &scanner) {
-    Expression *exp = readE(scanner);
+    Expression *exp = readE(scanner, 0);
     if (scanner.hasMoreTokens()) {
         error("parseExp: Found extra token: " + scanner.nextToken());
     }
@@ -40,6 +40,11 @@ Expression *readE(TokenScanner &scanner, int prec) {
         int newPrec = precedence(token);
         if (newPrec <= prec) break;
         Expression *rhs = readE(scanner, newPrec);
+        if (token == "+" || token == "-") {
+            if (rhs->toString().find("-") != std::string::npos) {
+                error("SYNTAX ERROR");
+            }
+        }
         exp = new CompoundExp(token, exp, rhs);
     }
     scanner.saveToken(token);
@@ -58,7 +63,14 @@ Expression *readT(TokenScanner &scanner) {
     TokenType type = scanner.getTokenType(token);
     if (type == WORD) return new IdentifierExp(token);
     if (type == NUMBER) return new ConstantExp(stringToInteger(token));
-    if (token == "-") return new CompoundExp(token, new ConstantExp(0), readE(scanner));
+    if (token == "-") {
+        std::string nextToken = scanner.nextToken();
+        if (nextToken == "+" || nextToken == "-") {
+            error("SYNTAX ERROR");
+        }
+        scanner.saveToken(nextToken);
+        return new CompoundExp(token, new ConstantExp(0), readE(scanner));
+    }
     if (token != "(") error("Illegal term in expression");
     Expression *exp = readE(scanner);
     if (scanner.nextToken() != ")") {
