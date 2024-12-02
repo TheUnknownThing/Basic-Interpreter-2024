@@ -101,6 +101,11 @@ public:
 
     virtual ExpressionType getType() = 0;
 
+    virtual std::string getOp() {
+        error("getOp: Illegal expression type");
+        return "";
+    }
+
 };
 
 /*
@@ -260,5 +265,7 @@ private:
     Expression *lhs, *rhs;
 
 };
+
+
 
 #endif
