@@ -2,7 +2,9 @@
 #include "ExprLexer.h"
 #include "ExprParser.h"
 #include "EvalVisitor.h"
+#include <exception>
 #include <iostream>
+#include <any>
 
 int main(int argc, const char* argv[]) {
   std::ifstream stream;
@@ -21,7 +23,14 @@ int main(int argc, const char* argv[]) {
   antlr4::tree::ParseTree *tree = parser.calc();
 
   EvalVisitor eval;
-  eval.visit(tree);
+  std::any result = eval.visit(tree);
+
+  try {
+    int value = std::any_cast<int>(result);
+    std::cout << value << std::endl;
+  } catch (std::exception &e) {
+    std::cerr << "Error: " << e.what() << std::endl;
+  }
 
   return 0;
 }
